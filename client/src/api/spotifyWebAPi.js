@@ -46,10 +46,14 @@ function wrapSpotifyWebAPi(api){
             });
 }
 
-export function getUserPlaylists(userid){
-    return wrapSpotifyWebAPi(() => spotify.getUserPlaylists(userid));
+export function fetchUserPlaylists(userId){
+    return wrapSpotifyWebAPi(() => spotify.getUserPlaylists(userId));
 }
 
-export function getCurrentUser(){
+export function fetchCurrentUser(){
     return wrapSpotifyWebAPi(() => spotify.getMe());
+}
+
+export function fetchTracksFromPlayList(userId, playListId){
+    return wrapSpotifyWebAPi(() => spotify.getPlaylistTracks(userId, playListId));
 }

@@ -75,5 +75,5 @@ app.get('/refresh_token', function(req, res) {
 
 let port = process.env.PORT || 8888
 app.listen(port, () => {
-  console.log(`Listening on port ${port}. Go /login to initiate authentication flow.`)
+  console.log(`Listening on port ${port}.`)
 })

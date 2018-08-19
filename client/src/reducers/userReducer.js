@@ -1,7 +1,7 @@
 import {FETCH_USER_SUCCESS} from '../constants';
 import {Map} from 'immutable';
 
-export default function(state = Map({
+export default function userReducer(state = Map({
     id: -1,
     display_name: '',
     avatar_url: ''
@@ -13,3 +13,5 @@ export default function(state = Map({
             return state;
     }
 }
+
+export const getCurUser = (state) => state;

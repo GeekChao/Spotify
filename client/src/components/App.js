@@ -2,9 +2,9 @@ import React from 'react';
 import Client from '../Client';
 import {AUTH_URL} from '../constants';
 import {getHashParams} from '../util/token';
-import * as SpotifyWebApi from '../api/spotifyWebAPi';
 import PropTypes from 'prop-types';
-import {getUser} from '../actions'
+import {fetchUser, fetchUserPlaylists} from '../actions';
+import async from 'async';
 
 class App extends React.Component{
     static contextTypes = {
@@ -20,7 +20,6 @@ class App extends React.Component{
 
         if(access_token){
             Client.setToken(access_token, refresh_token);
-            SpotifyWebApi.getCurrentUser();
         }
 
         if(!Client.isLoggedin()){
@@ -29,7 +28,17 @@ class App extends React.Component{
     }
 
     componentDidMount(){
-        this.context.store.dispatch(getUser());
+        const {dispatch} = this.context.store;
+        async.series([
+            cb => {
+                dispatch(fetchUser());
+                cb(null);
+            },
+            cb => {
+                dispatch(fetchUserPlaylists());
+                cb(null);
+            }
+        ]);
     }
 
     render(){
