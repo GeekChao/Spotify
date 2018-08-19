@@ -3,8 +3,14 @@ import Client from '../Client';
 import {AUTH_URL} from '../constants';
 import {getHashParams} from '../util/token';
 import * as SpotifyWebApi from '../api/spotifyWebAPi';
+import PropTypes from 'prop-types';
+import {getUser} from '../actions'
 
 class App extends React.Component{
+    static contextTypes = {
+        store: PropTypes.object,
+    };
+
     componentWillMount(){
         const {access_token, refresh_token, error} = getHashParams();
 
@@ -23,7 +29,7 @@ class App extends React.Component{
     }
 
     componentDidMount(){
-        SpotifyWebApi.getCurrentUser();
+        this.context.store.dispatch(getUser());
     }
 
     render(){

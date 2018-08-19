@@ -24,34 +24,32 @@ function _refreshToken(){
         access_token && Client.setToken(access_token);
         return access_token;
     })
-    .catch(err => console.error(err));
+    .catch(err => {throw err});
 }
 
 function wrapSpotifyWebAPi(api){
-     _setToken();
-    api()
-        .then(res => console.log(res))
-        .catch(err => {
-            if(err.status === 401){
-                _refreshToken().then(access_token => { //refresh token if the access token expires
-                    if(access_token){
-                        _setToken();
-                        api()
-                            .then(res => console.log(res))
-                            .catch(err => console.log(err));
-                    }
-                });
-            }else{
-                console.error(err);
-            }
-        });
+    _setToken();
+    return api()
+            .catch(err => {
+                if(err.status === 401){
+                    console.log('refresh_token');
+                    return _refreshToken()
+                            .then(access_token => { //refresh token if the access token expires
+                                if(access_token){
+                                    _setToken();
+                                    return api();
+                                }
+                            });
+                }else{
+                    throw err;
+                }
+            });
 }
 
-
 export function getUserPlaylists(userid){
-    wrapSpotifyWebAPi(() => spotify.getUserPlaylists(userid));
+    return wrapSpotifyWebAPi(() => spotify.getUserPlaylists(userid));
 }
 
 export function getCurrentUser(){
-    wrapSpotifyWebAPi(() => spotify.getMe());
+    return wrapSpotifyWebAPi(() => spotify.getMe());
 }
