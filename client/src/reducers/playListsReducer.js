@@ -12,3 +12,9 @@ export default function playListsReducer(state = fromJS({
             return state;
     };
 };
+
+export const getPlayListInfo = (state, playListId) => state.get('playListsInfo').get(`${playListId}`);
+
+export const getPlayListTracks = (state, playListId) => state.get('playListsTracks').get(`${playListId}`);
+
+export const getPlayLists = (state) => state.get('playListsInfo');

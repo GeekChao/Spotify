@@ -27,17 +27,12 @@ export const fetchUser = () => {
 /**
  * fetch a list of playlists from the current user first, then fetch tracks from each playlist
  */
-export const fetchUserPlaylists = () => (dispatch, getState) => {
+export const fetchUserPlaylists = () => (dispatch, getState) => new Promise((resolve, reject) => {
     const userId = getCurUser(getState()).get('id');
     const playListsInfo = {}, playListsTracks = {};
 
     if(!userId){
-        return dispatch({
-            type: action.NO_USER_EXIST,
-            payload: {
-                error: 'NO_USER_EXIST'
-            }
-        });
+        reject('NO_USER_EXIST');
     }
 
     async.waterfall([
@@ -72,12 +67,7 @@ export const fetchUserPlaylists = () => (dispatch, getState) => {
         }
     ], (err) => {
         if(err){
-            return dispatch({
-                type: action.FETCH_PLAYLISTS_FAIL,
-                payload: {
-                    error: err.responseText
-                }
-            });
+            reject(err.responseText);
         }
 
         dispatch({
@@ -87,5 +77,7 @@ export const fetchUserPlaylists = () => (dispatch, getState) => {
                 playListsTracks
             }
         });
+
+        resolve('Fetch playLists successfully');
     });
-};
+});
