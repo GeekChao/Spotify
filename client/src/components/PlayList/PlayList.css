@@ -1,0 +1,4 @@
+.PlayList{
+    display: flex;
+    flex-direction: column;
+}

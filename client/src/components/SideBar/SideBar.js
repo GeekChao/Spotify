@@ -26,7 +26,13 @@ const SideBar = props => {
                     {
                         Object.entries(playListsInfo)
                               .map(([id, {name}]) => 
-                                <li key={id}><Link to={`/playList/${id}`}>{name}</Link></li>
+                                <li key={id}>
+                                    <Link to={{
+                                        pathname: '/playList',
+                                        state: {'playListId': id}
+                                    }}
+                                    >{name}</Link>
+                                </li>
                             )        
                     }
                 </ul>

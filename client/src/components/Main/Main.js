@@ -12,7 +12,7 @@ class Main extends React.Component{
                 <ToolBar />
                 <Switch>
                     <Route exact path='/' render={() => <p>Welcome</p>}/>
-                    <Route path='/playlist/:playListId' component={PlayListContainer} />
+                    <Route path='/playlist' component={PlayListContainer} />
                 </Switch>
             </main>
         );
