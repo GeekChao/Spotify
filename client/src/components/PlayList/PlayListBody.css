@@ -1,0 +1,11 @@
+table.PlayListBody{
+    border-collapse: collapse;
+}
+
+.PlayListBody tr{
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+}
+
+.PlayListBody > thead th{
+    text-align: start;
+}

@@ -1,3 +1,19 @@
 .PlayListHeader{
     display: flex;
 }
+
+.playList_icon{
+    width: 20%;
+}
+
+.playList_icon > img{
+    width: 100%;
+    height: auto;
+}
+
+.playList_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1rem;
+}

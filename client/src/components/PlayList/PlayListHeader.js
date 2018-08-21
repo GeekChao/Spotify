@@ -4,12 +4,16 @@ import './PlayListHeader.css';
 
 const PlayListHeader = props => {
     const {name, images, owner:{display_name}, tracks:{total}, type} = props.playListInfo;
+    const hasImg = images && images[0] && images[0].url;
     return (
         <div className='PlayListHeader'>
-            <div>
-                {images && images[0] && <img alt='icon' src={images[0].url}/>}
-            </div>
-            <div>
+            {
+                hasImg &&
+                <div className='playList_icon'>
+                    <img alt='icon' src={images[0].url}/>
+                </div>
+            }
+            <div className='playList_info'>
                 <p>{type}</p>
                 <section>
                     <h1>{name}</h1>

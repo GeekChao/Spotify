@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './PlayListBody.css';
 
-const truncateAlbumName = (name, len) => {
+const truncateName = (name, len) => {
     if(name.length < len){
         return name;
     }
@@ -29,7 +30,7 @@ const convertMSToMin = time => {
 const PlayListBody = props => {
     const {items} = props.playListTracks;
     return(
-        <table>
+        <table className='PlayListBody'>
             <thead>
                 <tr>
                     <th></th>
@@ -49,9 +50,9 @@ const PlayListBody = props => {
                                     <button>Play</button>
                                     <button>Add</button>
                                 </td>
-                                <td>{name}</td>
+                                <td>{truncateName(name, 33)}</td>
                                 <td>{artists[0].name}</td>
-                                <td>{truncateAlbumName(album.name, 33)}</td>
+                                <td>{truncateName(album.name, 33)}</td>
                                 <td>{truncateDate(added_at)}</td>
                                 <td>{convertMSToMin(duration_ms)}</td>
                             </tr>
