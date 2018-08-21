@@ -1,14 +1,30 @@
 body{
     margin: 0;
     padding: 0;
+    background: rgba(0, 0, 0, .9);
+    font-family: serif;
 }
 
 ul{
     list-style: none;
+    padding: 0;
+}
+
+aside{
+    padding-left: 1rem;
 }
 
 a{
     text-decoration: none;
+    line-height: 1.5;
+}
+
+h3, a, th{
+    color: gray;
+}
+
+table, h1, p{
+    color: white;
 }
 
 .App{
