@@ -9,6 +9,7 @@ import Main from '../Main/Main';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import './App.css';
+import './load.css';
 
 class App extends React.Component{
 
@@ -56,7 +57,7 @@ class App extends React.Component{
     }
 
     render(){
-        if(this.state.loading) return <p>Loading....</p>;
+        if(this.state.loading) return <p className="loading">Loading…</p>;
 
         return(
             <div className='App'>
