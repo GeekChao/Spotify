@@ -57,3 +57,7 @@ export function fetchCurrentUser(){
 export function fetchTracksFromPlayList(userId, playListId){
     return wrapSpotifyWebAPi(() => spotify.getPlaylistTracks(userId, playListId));
 }
+
+export function fetchSearchTracks(query){
+    return wrapSpotifyWebAPi((() => spotify.searchTracks(query)));
+} 

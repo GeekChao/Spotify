@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './PlayListBody.css';
+import './TracksTable.css';
 
 const truncateName = (name, len) => {
     if(name.length < len){
@@ -27,10 +27,10 @@ const convertMSToMin = time => {
     return `${fillZero(min)}:${fillZero(sec)}`;
 }
 
-const PlayListBody = props => {
-    const {items} = props.playListTracks;
+const TracksTable = props => {
+    const {items} = props.tracks;
     return(
-        <table className='PlayListBody'>
+        <table className='TracksTable'>
             <thead>
                 <tr>
                     <th></th>
@@ -64,8 +64,8 @@ const PlayListBody = props => {
     );
 };
 
-PlayListBody.propTypes = {
-    playListTracks: PropTypes.object.isRequired,
+TracksTable.propTypes = {
+    tracks: PropTypes.object.isRequired,
 };
 
-export default PlayListBody;
+export default TracksTable;

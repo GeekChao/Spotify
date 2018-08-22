@@ -1,16 +1,16 @@
-table.PlayListBody{
+table.TracksTable{
     border-collapse: collapse;
 }
 
-.PlayListBody tr{
+.TracksTable tr{
     border-bottom: 1px solid hsla(0, 100%, 100%, .3);
     line-height: 2.2;
 }
 
-.PlayListBody tr:hover{
+.TracksTable tr:hover{
     background: hsla(0, 100%, 100%, .1);
 }
 
-.PlayListBody > thead th{
+.TracksTable > thead th{
     text-align: start;
 }

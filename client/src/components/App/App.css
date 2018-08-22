@@ -3,6 +3,7 @@ body{
     padding: 0;
     background: rgba(0, 0, 0, .9);
     font-family: serif;
+    color: white;
 }
 
 ul{
@@ -21,10 +22,6 @@ a{
 
 h3, a, th{
     color: gray;
-}
-
-table, h1, p{
-    color: white;
 }
 
 .App{

@@ -1,0 +1,33 @@
+.ToolBar{
+    display: flex;
+    margin: .6em 0;
+    height: 2rem;
+}
+
+.ToolBar .search{
+    margin-right: auto;
+}
+
+.ToolBar .search > input{
+    outline: none;
+    margin-right: 1em;
+    border-radius: 1em;
+    border: 1px solid rgba(0, 0, 0, .2);
+    padding: .2em;
+}
+
+.ToolBar .avatar{
+    margin-right: 3em;
+}
+
+.ToolBar .avatar > img{
+    width: auto;
+    height: 100%;
+    border-radius: 50em;
+    vertical-align: middle;
+}
+
+.ToolBar .avatar > span{
+    font-size: 14px;
+    padding-left: .5em;
+}

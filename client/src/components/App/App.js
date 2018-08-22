@@ -12,7 +12,6 @@ import './App.css';
 import './load.css';
 
 class App extends React.Component{
-
     state = {
         loading: true,
     };
