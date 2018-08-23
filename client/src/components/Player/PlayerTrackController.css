@@ -1,0 +1,12 @@
+.playerTrackController{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+
+.playerTrackController .controller > *{
+    height: 2em;
+    width: auto;
+}

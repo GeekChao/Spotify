@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProgressBar from './ProgressBar';
+import './PlayerTrackController.css';
 
-const PlayerController = props => {
+const PlayerTrackController = props => {
     const {player} = props;
 
     const play = () => {
@@ -24,19 +25,19 @@ const PlayerController = props => {
     };
 
     return (
-        <div>
-            <div>
-                <button onClick={backward}>backward</button>
-                <button onClick={play}>play</button>
-                <button onClick={forward}>forward</button>
+        <div className='playerTrackController'>
+            <div className='controller'>
+                <img onClick={backward} alt='backward'/>
+                <img onClick={play} alt='play'/>
+                <img onClick={forward} alt='forward'/>
             </div>
             <ProgressBar />
         </div>
     );
 };
 
-PlayerController.propTypes = {
+PlayerTrackController.propTypes = {
     player: PropTypes.object.isRequired
 };
 
-export default PlayerController;
+export default PlayerTrackController;

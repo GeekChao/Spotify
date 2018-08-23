@@ -18,7 +18,7 @@ const PlayerTrackInfo = props => {
             </div>   
             <section className='info'>
                 <h4>{trackName}</h4>
-                <p>{artistsName}</p>
+                <h5>{artistsName}</h5>
             </section>
         </div>
     );

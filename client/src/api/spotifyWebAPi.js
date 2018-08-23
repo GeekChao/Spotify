@@ -64,18 +64,10 @@ export function fetchSearchTracks(query){
 
 export function playTracks(deviceId, uris, uri){
     const access_token = Client.getAccessToken();
-/*     return fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
-        method: 'PUT',
-        body: JSON.stringify({ uris }),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${access_token}`
-        },
-      }); */
     const api = (access_token) => {
         return axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
             uris,
-            offset: {uri}
+            offset: uri ? {uri} : {position: 0}
         }, {
                 headers: {
                     'Authorization': `Bearer ${access_token}`

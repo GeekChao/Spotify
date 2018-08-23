@@ -1,0 +1,10 @@
+.playerVolumeController{
+    display: flex;
+    align-items: center;
+    width: 20%;
+}
+
+.playerVolumeController img{
+    height: 1.2em;
+    width: auto;
+}

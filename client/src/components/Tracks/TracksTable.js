@@ -53,6 +53,7 @@ const TracksTable = props => {
 
 TracksTable.propTypes = {
     tracks: PropTypes.object.isRequired,
+    deviceId: PropTypes.string.isRequired
 };
 
 export default TracksTable;

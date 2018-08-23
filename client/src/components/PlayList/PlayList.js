@@ -8,7 +8,7 @@ const PlayList = props => {
     const {playListInfo, playListTracks, deviceId} = props;
     return (
         <div className='PlayList'>
-            <PlayListHeader playListInfo={playListInfo}/>
+            <PlayListHeader playListInfo={playListInfo} tracks={playListTracks} deviceId={deviceId}/>
             <TracksTable tracks={playListTracks} deviceId={deviceId}/>
         </div>
     );

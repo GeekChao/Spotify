@@ -1,16 +1,21 @@
 .playerTrackInfo{
     display: flex;
-    width: 25%;
     justify-content: center;
     align-items: center;
+    width: 20%;
 }
 
 .playerTrackInfo .icon{
-    width: 40%;
+    width: 30%;
     height: auto;
+    text-align: center;
 }
 
 .playerTrackInfo .info{
-    width: 60%;
+    width: 70%;
+}
+
+.playerTrackInfo h4, h5{
+    margin: .5em;
 }
 
