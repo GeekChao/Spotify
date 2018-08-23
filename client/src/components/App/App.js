@@ -1,13 +1,14 @@
 import React from 'react';
 import Client from '../../Client';
-import {AUTH_URL} from '../../constants';
+import {AUTH_URL, AUTH_ERROR, INIT_APP_ERROR} from '../../constants';
 import {getHashParams} from '../../util/token';
-import {fetchUser, fetchUserPlaylists} from '../../actions';
+import {fetchUser, fetchUserPlaylists, setUpPlayer} from '../../actions';
 import async from 'async';
 import SideBarContainer from '../../containers/SideBarContainer';
 import Main from '../Main/Main';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import PlayerContainer from '../../containers/PlayerContainer';
 import './App.css';
 import './load.css';
 
@@ -20,7 +21,12 @@ class App extends React.Component{
         const {access_token, refresh_token, error} = getHashParams();
 
         if(error){
-            alert('There was an error during the authentication'); //replace with redux action
+            this.props.dispatch({
+                type: AUTH_ERROR,
+                payload: {
+                    error
+                }
+            });
         }
 
         if(access_token){
@@ -32,6 +38,20 @@ class App extends React.Component{
         }
     }
 
+    checkWindowSpotify = cb => {
+        const {dispatch} = this.props;
+        const timerId = setInterval(() => {
+            if(window.Spotify != null){
+                clearInterval(timerId);
+                dispatch(setUpPlayer())
+                    .then(() => {
+                        cb(null);
+                    })
+                    .catch(err => cb(err));
+            }
+        }, 1000);
+    };
+
     componentDidMount(){
         const {dispatch} = this.props;
         async.series([
@@ -39,17 +59,27 @@ class App extends React.Component{
                 dispatch(fetchUser())
                     .then(() => {
                         cb(null);
-                    });
+                    })
+                    .catch(err => cb(err));
             },
             cb => {
                 dispatch(fetchUserPlaylists())
                     .then(() => {
                         cb(null);
-                    });
+                    })
+                    .catch(err => cb(err));
+            },
+            cb => {
+                this.checkWindowSpotify(cb);
             }
         ], (err) => {
             if(err){
-
+                dispatch({
+                    type: INIT_APP_ERROR,
+                    payload: {
+                        error: err
+                    }
+                });
             }
             this.setState({loading: false});
         });
@@ -62,6 +92,7 @@ class App extends React.Component{
             <div className='App'>
                 <SideBarContainer />
                 <Main />
+                <PlayerContainer />
             </div>
         );
     }

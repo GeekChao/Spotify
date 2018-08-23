@@ -61,3 +61,39 @@ export function fetchTracksFromPlayList(userId, playListId){
 export function fetchSearchTracks(query){
     return wrapSpotifyWebAPi((() => spotify.searchTracks(query)));
 } 
+
+export function playTracks(deviceId, uris, uri){
+    const access_token = Client.getAccessToken();
+/*     return fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+        method: 'PUT',
+        body: JSON.stringify({ uris }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${access_token}`
+        },
+      }); */
+    const api = (access_token) => {
+        return axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+            uris,
+            offset: {uri}
+        }, {
+                headers: {
+                    'Authorization': `Bearer ${access_token}`
+                }
+            });
+    }
+
+    return api(access_token).catch(err => {
+            if(err.status === 401){
+                console.log('refresh_token');
+                return _refreshToken()
+                        .then(access_token => { //refresh token if the access token expires
+                            if(access_token){
+                                return api(access_token);
+                            }
+                        });
+            }else{
+                throw err;
+            }
+        });
+}

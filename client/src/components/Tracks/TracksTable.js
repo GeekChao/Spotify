@@ -1,34 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './TracksTable.css';
-
-const truncateName = (name, len) => {
-    if(name.length < len){
-        return name;
-    }
-
-    return name.substr(0, len - 3).concat('...');
-}
-
-const truncateDate = date => date.substr(0, 10);
-
-const convertMSToMin = time => {
-    const sec = Math.floor(time / 1000) % 60
-    const min = Math.floor(time / 1000 / 60);
-
-    const fillZero = num => {
-        if(num < 10){
-            return `0${num}`;
-        }
-
-        return num;
-    }
-
-    return `${fillZero(min)}:${fillZero(sec)}`;
-}
+import {truncateDate, truncateName} from '../../util/truncate';
+import {convertMSToMin} from '../../util/convertDate';
+import {playTracks} from '../../api/spotifyWebAPi';
 
 const TracksTable = props => {
-    const {items} = props.tracks;
+    const {tracks:{items}, deviceId} = props;
+
+    const play = (uris, uri) => {
+        playTracks(deviceId, uris, uri)
+            .then(() => console.log('play a track'))
+            .catch(err => console.log(err));
+    }
+
+    const uris = items.map(item => item.track.uri);
+
     return(
         <table className='TracksTable'>
             <thead>
@@ -45,9 +32,9 @@ const TracksTable = props => {
                 {
                     items.map(({added_at, track:{id, name, artists, album, type, uri, duration_ms}}) => {
                         return (
-                            <tr key={id} uri={uri} type={type}>
+                            <tr key={id} type={type}>
                                 <td>
-                                    <button>Play</button>
+                                    <button onClick={evt => {play(uris, uri)}}>Play</button>
                                     <button>Add</button>
                                 </td>
                                 <td>{truncateName(name, 33)}</td>

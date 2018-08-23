@@ -1,15 +1,15 @@
-let express = require('express')
-let request = require('request')
-let querystring = require('querystring')
+let express = require('express');
+let request = require('request');
+let querystring = require('querystring');
 let cors = require('cors');
 
-let app = express()
+let app = express();
 
-app.use(cors())
+app.use(cors());
 
 let redirect_uri = 
   process.env.REDIRECT_URI || 
-  'http://localhost:8888/callback'
+  'http://localhost:8888/callback';
 
 app.get('/login', function(req, res) {
   res.redirect('https://accounts.spotify.com/authorize?' +
@@ -18,11 +18,12 @@ app.get('/login', function(req, res) {
       client_id: process.env.SPOTIFY_CLIENT_ID,
       scope: 'user-read-private playlist-read-private user-read-recently-played streaming user-read-birthdate user-read-email',
       redirect_uri
-    }))
-})
+    }));
+});
 
 app.get('/callback', function(req, res) {
-  let code = req.query.code || null
+  let code = req.query.code || null;
+
   let authOptions = {
     url: 'https://accounts.spotify.com/api/token',
     form: {
@@ -36,7 +37,8 @@ app.get('/callback', function(req, res) {
       ).toString('base64'))
     },
     json: true
-  }
+  };
+
   request.post(authOptions, function(error, response, body) {
     var access_token = body.access_token
     var refresh_token = body.refresh_token
@@ -46,8 +48,8 @@ app.get('/callback', function(req, res) {
       access_token: access_token,
       refresh_token: refresh_token
     }));
-  })
-})
+  });
+});
 
 app.get('/refresh_token', function(req, res) {
 
@@ -73,7 +75,7 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-let port = process.env.PORT || 8888
+let port = process.env.PORT || 8888;
 app.listen(port, () => {
-  console.log(`Listening on port ${port}.`)
-})
+  console.log(`Listening on port ${port}.`);
+});

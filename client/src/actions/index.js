@@ -2,6 +2,8 @@ import * as action from '../constants';
 import * as api from '../api/spotifyWebAPi';
 import async from 'async';
 import {getCurUser} from '../reducers';
+import Client from '../Client';
+import {truncateName} from '../util/truncate'
 
 export const fetchUser = () => {
     return api.fetchCurrentUser()
@@ -107,4 +109,65 @@ export const fetchSearchTracks = query => {
 
 export const clearDidSearch = () => ({
     type: action.CLEAR_DID_SEARCH
+});
+
+export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
+    const access_token = Client.getAccessToken();
+    const player = new window.Spotify.Player({
+        name: 'music player',
+        getOAuthToken: cb => { cb(access_token);}
+    });
+
+    dispatch({
+        type: action.INIT_MUSIC_PLAYER,
+        payload: {
+            player
+        }
+    });
+    
+    // Error handling
+    player.addListener('initialization_error', ({ message }) => { console.error(message); });
+    player.addListener('authentication_error', ({ message }) => { console.error(message); });
+    player.addListener('account_error', ({ message }) => { console.error(message); });
+    player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+    // Playback status updates
+    player.addListener('player_state_changed', state => { 
+        const {position, duration, current_track:{name:trackName, album:{images:albumImg}, artists}} = state.track_window;
+        const artistsName = truncateName(artists.map(({name}) => name).join(', '), 30);
+        dispatch({
+            type: action.UPDATE_PLAYER_STATE,
+            payload: {
+                curTrack: {
+                    trackName,
+                    albumImg,
+                    artistsName
+                },
+                progress:{
+                    position,
+                    duration
+                }
+            }
+        });
+        });
+
+    // Ready
+    player.addListener('ready', ({ device_id }) => {
+        dispatch({
+            type: action.MUSIC_PLAYER_READY,
+            payload: {
+                deviceId: device_id
+            }
+        });
+        resolve('ready');
+    });
+
+    // Not Ready
+    player.addListener('not_ready', ({ device_id }) => {
+        console.log('Device ID has gone offline', device_id);
+        reject('not ready');
+    });
+
+    // Connect to the player!
+    player.connect();
 });

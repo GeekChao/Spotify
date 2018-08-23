@@ -1,16 +1,16 @@
 import {connect} from 'react-redux';
 import TracksTable from '../components/Tracks/TracksTable';
-import {getSearchTracks} from '../reducers';
+import {getSearchTracks, getDidSearch, getDeviceId} from '../reducers';
 import toJS from '../util/toJS';
 import React from 'react';
 import {clearDidSearch} from '../actions';
-import {getDidSearch} from '../reducers';
 import PropTypes from 'prop-types';
 import {Redirect} from 'react-router-dom';
 
 class SearchTracks extends React.Component{
     static propTypes = {
-        didSearch: PropTypes.bool.isRequired
+        didSearch: PropTypes.bool.isRequired,
+        deviceId: PropTypes.string.isRequired
     };
 
     componentDidMount(){
@@ -24,13 +24,13 @@ class SearchTracks extends React.Component{
     }
 
     render(){
-        const {tracks} = this.props;
+        const {tracks, deviceId} = this.props;
         return (
             <div>
                 {
                     tracks == undefined ? 
                         <Redirect to={'/'}/> :
-                        <TracksTable tracks={tracks} />
+                        <TracksTable tracks={tracks} deviceId={deviceId} />
                 }
             </div>
         );
@@ -40,6 +40,7 @@ class SearchTracks extends React.Component{
 const mapStateToProps = (state) => ({
     tracks: getSearchTracks(state),
     didSearch: getDidSearch(state),
+    deviceId: getDeviceId(state)
 }); 
 
 export default connect(mapStateToProps)(toJS(SearchTracks));

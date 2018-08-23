@@ -5,7 +5,7 @@ import ProgressBar from './ProgressBar';
 const PlayerVolumeController = props => {
     return (
         <div>
-            <img alt='volume' src={} />
+            <img alt='volume' />
             <ProgressBar />
         </div>
     );
