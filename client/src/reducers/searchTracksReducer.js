@@ -2,7 +2,7 @@ import {FETCH_SEARCH_TRACKS_SUCCESS} from '../constants';
 import {fromJS} from 'immutable';
 
 export default function searchTracksReducer(state = fromJS({
-    tracks: {}
+    tracks: {items: []}
 }), action){
     switch(action.type){
         case FETCH_SEARCH_TRACKS_SUCCESS:

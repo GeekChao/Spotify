@@ -27,9 +27,10 @@ class RecentlyPlayTracks extends React.Component{
     }
 
     render(){
-        if(this.state.loading) return <p className="loading">Loading…</p>;
-
         const {tracks, deviceId, curState, player} = this.props;
+
+        if(this.state.loading && tracks.items.length === 0) return <p className="loading">Loading…</p>;
+
         return (
             <div>
                 {

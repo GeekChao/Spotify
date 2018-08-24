@@ -27,7 +27,7 @@ const artistisReducer = (state = Map(), action) => {
 }
 
 const recentlyPlayTracksReducer = (state = fromJS({
-    tracks: {}
+    tracks: {items: []}
 }), action) => {
     switch(action.type){
         case FETCH_RECENTLY_PLAY_SUCCESS:
