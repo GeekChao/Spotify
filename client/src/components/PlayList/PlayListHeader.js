@@ -8,6 +8,7 @@ const PlayListHeader = props => {
     const hasImg = images && images[0] && images[0].url;
     const {tracks:{items}, deviceId} = props;
 
+    let upperCaseType = type && type.toLocaleUpperCase();
     const uris = items.map(item => item.track.uri);
 
     const play = (uris) => {
@@ -25,12 +26,12 @@ const PlayListHeader = props => {
                 </div>
             }
             <div className='playList_info'>
-                <p>{type}</p>
+                <p>{upperCaseType}</p>
                 <section>
                     <h1>{name}</h1>
-                    <p>Created by:{display_name} - {total} songs</p>
+                    <p>Created by <strong>{display_name}</strong> - {total} songs</p>
                 </section>
-                <button onClick={evt => {play(uris)}}>Play</button>
+                <button onClick={evt => {play(uris)}} disabled={!uris.length}>PLAY</button>
             </div>
         </div>
     );

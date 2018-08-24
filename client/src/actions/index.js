@@ -1,9 +1,8 @@
 import * as action from '../constants';
 import * as api from '../api/spotifyWebAPi';
 import async from 'async';
-import {getCurUser} from '../reducers';
-import Client from '../Client';
-import {truncateName} from '../util/truncate'
+import {getCurUser, getPlayer} from '../reducers';
+import {truncateName} from '../util/truncate';
 
 export const fetchUser = () => {
     return api.fetchCurrentUser()
@@ -111,11 +110,26 @@ export const clearDidSearch = () => ({
     type: action.CLEAR_DID_SEARCH
 });
 
+export const removePlayer = () => (dispatch, getState) => {
+    const player = getPlayer(getState());
+    if(player){
+        player.disconnect();
+    }
+
+    dispatch({
+        type: action.DISCONNECT_MUSIC_PLAYER
+    });
+};
+
+
 export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
-    const access_token = Client.getAccessToken();
     const player = new window.Spotify.Player({
         name: 'music player',
-        getOAuthToken: cb => { cb(access_token);}
+        getOAuthToken: cb => { 
+            api.refreshToken()
+                .then(access_token => cb(access_token))
+                .catch(err => console.error(err));
+        }
     });
 
     dispatch({
@@ -133,7 +147,9 @@ export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
 
     // Playback status updates
     player.addListener('player_state_changed', state => { 
-        const {position, duration, current_track:{name:trackName, album:{images:albumImg}, artists}} = state.track_window;
+        console.log(state);
+        const {position, duration, paused} = state;
+        const {current_track:{name:trackName, album:{images:albumImg}, artists, uri}} = state.track_window;
         const artistsName = truncateName(artists.map(({name}) => name).join(', '), 30);
         dispatch({
             type: action.UPDATE_PLAYER_STATE,
@@ -146,6 +162,10 @@ export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
                 progress:{
                     position,
                     duration
+                },
+                playStatus: {
+                    playing: !paused,
+                    playTrackUri: uri
                 }
             }
         });

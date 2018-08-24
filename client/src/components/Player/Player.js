@@ -6,11 +6,11 @@ import PlayerVolumeController from './PlayerVolumeController';
 import './Player.css';
 
 const Player = props => {
-    const {player, track, progress} = props;
+    const {player, track, progress, playStatus} = props;
     return (
         <div className='player'>
             <PlayerTrackInfo track={track}/>
-            <PlayerTrackController player={player} progress={progress}/>
+            <PlayerTrackController player={player} progress={progress} playStatus={playStatus}/>
             <PlayerVolumeController player={player}/>
         </div>
     );
@@ -19,7 +19,8 @@ const Player = props => {
 Player.propTypes = {
     player: PropTypes.object.isRequired,
     track: PropTypes.object,
-    progress: PropTypes.object
+    progress: PropTypes.object,
+    playStatus: PropTypes.object.isRequired
 };
 
 export default Player;

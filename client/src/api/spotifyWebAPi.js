@@ -14,7 +14,9 @@ function _setToken(){
     }
 } 
 
-function _refreshToken(){
+export function refreshToken(){
+    console.log('refresh_token');
+
     const refresh_token = Client.getRefreshToken();
     return axios.get(`${REFRESH_TOKEN_URL}`, {
         params:{refresh_token}
@@ -32,8 +34,7 @@ function wrapSpotifyWebAPi(api){
     return api()
             .catch(err => {
                 if(err.status === 401){
-                    console.log('refresh_token');
-                    return _refreshToken()
+                    return refreshToken()
                             .then(access_token => { //refresh token if the access token expires
                                 if(access_token){
                                     _setToken();
@@ -64,28 +65,14 @@ export function fetchSearchTracks(query){
 
 export function playTracks(deviceId, uris, uri){
     const access_token = Client.getAccessToken();
-    const api = (access_token) => {
-        return axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
-            uris,
-            offset: uri ? {uri} : {position: 0}
-        }, {
-                headers: {
-                    'Authorization': `Bearer ${access_token}`
-                }
-            });
-    }
-
-    return api(access_token).catch(err => {
-            if(err.status === 401){
-                console.log('refresh_token');
-                return _refreshToken()
-                        .then(access_token => { //refresh token if the access token expires
-                            if(access_token){
-                                return api(access_token);
-                            }
-                        });
-            }else{
-                throw err;
-            }
-        });
+    return axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, 
+    {
+        uris,
+        offset: uri ? {uri} : {position: 0}
+    }, 
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`
+        }
+    });
 }

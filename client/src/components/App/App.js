@@ -2,7 +2,7 @@ import React from 'react';
 import Client from '../../Client';
 import {AUTH_URL, AUTH_ERROR, INIT_APP_ERROR} from '../../constants';
 import {getHashParams} from '../../util/token';
-import {fetchUser, fetchUserPlaylists, setUpPlayer} from '../../actions';
+import {fetchUser, fetchUserPlaylists, setUpPlayer, removePlayer} from '../../actions';
 import async from 'async';
 import SideBarContainer from '../../containers/SideBarContainer';
 import Main from '../Main/Main';
@@ -83,6 +83,11 @@ class App extends React.Component{
             }
             this.setState({loading: false});
         });
+    }
+
+    componentWillUnmount(){
+        const {dispatch} = this.props;
+        dispatch(removePlayer());
     }
 
     render(){

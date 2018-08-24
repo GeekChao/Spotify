@@ -9,4 +9,9 @@
 .playerTrackController .controller > *{
     height: 2em;
     width: auto;
+    margin: .5em;
+}
+
+.playerTrackController .controller > *:hover{
+    background: hsla(0, 100%, 100%, .2);
 }

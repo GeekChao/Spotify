@@ -13,4 +13,20 @@ table.TracksTable{
 
 .TracksTable > thead th{
     text-align: start;
+    font-size: .8em;
+}
+
+.TracksTable > thead th img{
+    width: 1.4em;
+}
+
+.TracksTable td:first-child{
+}
+
+.TracksTable .playTrack{
+    visibility: hidden;
+}
+
+.TracksTable td:first-child > *{
+    width: 1.3em;
 }

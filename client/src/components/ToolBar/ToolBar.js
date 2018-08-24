@@ -26,7 +26,7 @@ class ToolBar extends React.Component{
         return(
             <div className='ToolBar'>
                 <div className='search'>
-                    <input type='text' name='value' value={value} placeholder='  search...' onChange={this.handleChange} />
+                    <input type='text' name='value' value={value} onChange={this.handleChange} />
                     <button onClick={this.handleSearch} disabled={!this.validate()}>search</button>
                 </div>
                 <div className='avatar'>

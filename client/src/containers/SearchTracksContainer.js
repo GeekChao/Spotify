@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import TracksTable from '../components/Tracks/TracksTable';
-import {getSearchTracks, getDidSearch, getDeviceId} from '../reducers';
+import {getSearchTracks, getDidSearch, getDeviceId, getPlayer, getPlayStatus} from '../reducers';
 import toJS from '../util/toJS';
 import React from 'react';
 import {clearDidSearch} from '../actions';
@@ -24,13 +24,18 @@ class SearchTracks extends React.Component{
     }
 
     render(){
-        const {tracks, deviceId} = this.props;
+        const {tracks, deviceId, playStatus, player} = this.props;
         return (
             <div>
                 {
                     tracks == undefined ? 
                         <Redirect to={'/'}/> :
-                        <TracksTable tracks={tracks} deviceId={deviceId} />
+                        <TracksTable 
+                            tracks={tracks} 
+                            deviceId={deviceId} 
+                            playStatus={playStatus} 
+                            player={player}
+                        />
                 }
             </div>
         );
@@ -40,7 +45,9 @@ class SearchTracks extends React.Component{
 const mapStateToProps = (state) => ({
     tracks: getSearchTracks(state),
     didSearch: getDidSearch(state),
-    deviceId: getDeviceId(state)
+    deviceId: getDeviceId(state),
+    playStatus: getPlayStatus(state),
+    player: getPlayer(state)
 }); 
 
 export default connect(mapStateToProps)(toJS(SearchTracks));

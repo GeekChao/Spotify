@@ -1,5 +1,6 @@
 .PlayListHeader{
     display: flex;
+    margin-bottom: 1em;
 }
 
 .playList_icon{
@@ -16,4 +17,43 @@
     flex-direction: column;
     justify-content: flex-end;
     padding: 1rem;
+}
+
+.playList_info h1{
+    margin: 0;
+    font-size: 2em;
+}
+
+.playList_info > p{
+    margin-bottom: .3em;
+}
+
+.playList_info p{
+    font-size: .8em;
+    color: gray;
+}    
+
+.playList_info strong{
+    color: whitesmoke;
+}
+
+.playList_info button{
+    outline: none;
+    color: white;
+    background: green;
+    border: 1px solid rgba(0, 0, 0, .8);
+    padding: .8em;
+    border-radius: 2em;
+    text-shadow: 1px 1px rgba(0, 0, 0, .5);
+    width: 8em;
+}
+
+.playList_info button:hover{
+    transform: scale(1.1);
+}
+
+.playList_info button:disabled{
+    opacity: 0.65; 
+    cursor: not-allowed;
+    transform: none;
 }
