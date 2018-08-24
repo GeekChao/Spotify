@@ -58,10 +58,10 @@ const TracksTable = props => {
             </thead>
             <tbody>
                 {
-                    items.map(({added_at, track:{id, name, artists, album, type, uri, duration_ms}}) => {
+                    items.map(({added_at, track:{id, name, artists, album, type, uri, duration_ms}}, i) => {
                         return (
                             <tr 
-                                key={id} 
+                                key={i} 
                                 type={type} 
                                 id={id} 
                                 onMouseOver={evt => hoverRow(id)} 

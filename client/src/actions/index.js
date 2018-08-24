@@ -2,7 +2,7 @@ import * as action from '../constants';
 import * as api from '../api/spotifyWebAPi';
 import async from 'async';
 import {getCurUser, getPlayer} from '../reducers';
-import {truncateName} from '../util/truncate';
+import {truncateName, truncateDate} from '../util/truncate';
 
 export const fetchUser = () => {
     return api.fetchCurrentUser()
@@ -24,6 +24,29 @@ export const fetchUser = () => {
             }
         }));
 };
+
+export const fetchRecentlyPlayTracks = () => {
+    return api.fetchRecentlyPlayTracks()
+        .then(data => {
+            //convert play history obj to 'fake' playList obj
+            const items = data.items.map(({played_at, track}) => ({
+                added_at: truncateDate(played_at),
+                track
+            }));
+            return {
+                type: action.FETCH_RECENTLY_PLAY_SUCCESS,
+                payload:{
+                    tracks: {items}
+                }
+            };
+        })
+        .catch(err => ({
+            type: action.FETCH_SEARCH_TRACKS_FAIL,
+            payload: {
+                error: err.responseText
+            }
+        })); 
+}
 
 /**
  * fetch a list of playlists from the current user first, then fetch tracks from each playlist

@@ -3,6 +3,7 @@ import ToolBarContainer from '../../containers/ToolBarContainer';
 import {Switch, Route, withRouter, Redirect} from 'react-router-dom';
 import PlayListContainer from '../../containers/PlayListContainer';
 import SearchTracksContainer from '../../containers/SearchTracksContainer';
+import RecentlyPlayTracksContainer from '../../containers/RecentlyPlayTracksContainer';
 import {fetchSearchTracks} from '../../actions';
 import {connect} from 'react-redux';
 import {getDidSearch} from '../../reducers';
@@ -29,6 +30,8 @@ class Main extends React.Component{
                     <Route exact path='/' render={() => <p>Welcome</p>}/>
                     <Route path='/playlist' component={PlayListContainer} />
                     <Route path='/search' component={SearchTracksContainer} />
+                    <Route path='/recently_played' component={RecentlyPlayTracksContainer} />
+                    
                 </Switch>
             </main>
         );

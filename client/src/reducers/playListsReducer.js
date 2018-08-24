@@ -17,4 +17,4 @@ export const getPlayListInfo = (state, playListId) => state.get('playListsInfo')
 
 export const getPlayListTracks = (state, playListId) => state.get('playListsTracks').get(`${playListId}`);
 
-export const getPlayLists = (state) => state.get('playListsInfo');
+export const getPlayLists = (state) => state.get('playListsInfo');           

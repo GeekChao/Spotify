@@ -5,6 +5,7 @@ import errorReducer from './errorReducer';
 import searchTracksReducer, * as fromSearchTracks from './searchTracksReducer';
 import didSearchReducer, * as fromSearch from './didSearchReducer';
 import musicPlayerReducer, * as fromPlayer from './musicPlayerReducer';
+import libraryReducer, * as fromLibrary from './libraryReducer';
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     searchTracks: searchTracksReducer,
     didSearch: didSearchReducer,
     musicPlayer: musicPlayerReducer,
+    library: libraryReducer
 });
 
 export default rootReducer;
@@ -34,3 +36,5 @@ export const getPlayer = (state) => fromPlayer.getPlayer(state.get('musicPlayer'
 export const getDeviceId = (state) => fromPlayer.getDeviceId(state.get('musicPlayer'));
 
 export const getCurState = (state) => fromPlayer.getCurState(state.get('musicPlayer'));
+
+export const getRecentlyPlayTracks = (state) => fromLibrary.getRecentlyPlayTracks(state.get('library'));

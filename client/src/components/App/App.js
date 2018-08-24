@@ -10,7 +10,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import PlayerContainer from '../../containers/PlayerContainer';
 import './App.css';
-import './load.css';
+import '../UI/load.css';
 
 class App extends React.Component{
     state = {
