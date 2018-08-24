@@ -10,7 +10,8 @@ export default function curStateReducer(state = fromJS({
     progress: {
         position: 0,
         duration: 0
-    }
+    },
+    playing: false,
 }), action){
     switch(action.type){
         case UPDATE_PLAYER_STATE:
@@ -19,7 +20,3 @@ export default function curStateReducer(state = fromJS({
             return state;
     }        
 }
-
-export const getPlayerCurTrack = state => state.get('curTrack');
-
-export const getPlayerProgress = state => state.get('progress');

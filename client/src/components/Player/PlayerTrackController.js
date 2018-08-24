@@ -8,7 +8,7 @@ import backwardImg from '../../../public/images/backward.png';
 import pauseImg from '../../../public/images/pause.png';
 
 const PlayerTrackController = props => {
-    const {player, playStatus:{playing}} = props;
+    const {player, curState:{playing, progress}} = props;
 
     const play = () => {
         player.togglePlay().then(() => {
@@ -42,7 +42,7 @@ const PlayerTrackController = props => {
 
 PlayerTrackController.propTypes = {
     player: PropTypes.object.isRequired,
-    playStatus: PropTypes.object.isRequired
+    curState: PropTypes.object.isRequired
 };
 
 export default PlayerTrackController;

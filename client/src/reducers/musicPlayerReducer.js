@@ -1,5 +1,5 @@
 import {INIT_MUSIC_PLAYER, MUSIC_PLAYER_READY} from '../constants';
-import curStateReducer, * as fromCurState from './curStateReducer';
+import curStateReducer from './curStateReducer';
 import {combineReducers} from 'redux-immutable';
 
 function deviceIdReducer(state = 0, action){
@@ -30,6 +30,4 @@ export const getPlayer = state => state.get('player');
 
 export const getDeviceId = state => state.get('deviceId');
 
-export const getPlayerCurTrack = state => fromCurState.getPlayerCurTrack(state.get('curState'));
-
-export const getPlayerProgress = state => fromCurState.getPlayerProgress(state.get('curState'));
+export const getCurState = state => state.get('curState');

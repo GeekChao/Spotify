@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './PlayList.css';
 
 const PlayList = props => {
-    const {playListInfo, playListTracks, deviceId, playStatus, player} = props;
+    const {playListInfo, playListTracks, deviceId, curState, player} = props;
     return (
         <div className='PlayList'>
             <PlayListHeader 
@@ -16,7 +16,7 @@ const PlayList = props => {
             <TracksTable 
                 tracks={playListTracks} 
                 deviceId={deviceId} 
-                playStatus={playStatus} 
+                curState={curState} 
                 player={player}
             />
         </div>
@@ -27,7 +27,7 @@ PlayList.propTypes = {
     playListInfo: PropTypes.object.isRequired,
     playListTracks: PropTypes.object.isRequired,
     deviceId: PropTypes.string.isRequired,
-    playStatus: PropTypes.object.isRequired,
+    curState: PropTypes.object.isRequired,
     player: PropTypes.object.isRequired
 };
 

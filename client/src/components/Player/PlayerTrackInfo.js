@@ -4,7 +4,7 @@ import './PlayerTrackInfo.css';
 import {truncateName} from '../../util/truncate';
 
 const PlayerTrackInfo = props => {
-    const {trackName, artistsName, albumImg} = props.track;
+    const {trackName, artistsName, albumImg} = props.curState.curTrack;
 
     if(!trackName){
         return (
@@ -26,7 +26,7 @@ const PlayerTrackInfo = props => {
 };
 
 PlayerTrackInfo.propTypes = {
-    track: PropTypes.object
+    curState: PropTypes.object.isRequired
 };
 
 export default PlayerTrackInfo;

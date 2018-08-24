@@ -20,7 +20,8 @@ table.TracksTable{
     width: 1.4em;
 }
 
-.TracksTable td:first-child{
+.TracksTable td:first-child img:first-child{
+    margin-right: .5em;
 }
 
 .TracksTable .playTrack{

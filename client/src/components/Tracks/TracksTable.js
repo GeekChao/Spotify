@@ -12,10 +12,10 @@ import playImg from '../../../public/images/play.png';
 import pauseImg from '../../../public/images/pause.png';
 
 const TracksTable = props => {
-    const {tracks:{items}, deviceId, playStatus:{playing, playTrackUri}, player} = props;
+    const {tracks:{items}, deviceId, curState:{playing, curTrack:{trackName}}, player} = props;
 
-    const togglePlay = (uris, uri) => {
-        playTrackUri === uri && playing  ? ( 
+    const togglePlay = (uris, uri, name) => {
+        trackName === name && playing  ? ( 
             player.pause()
             .then(() => console.log('pause a track'))
         ) : (
@@ -71,8 +71,8 @@ const TracksTable = props => {
                                     <img 
                                         className='playTrack' 
                                         alt='play' 
-                                        src={playTrackUri === uri && playing ? pauseImg: playImg} 
-                                        onClick={evt => {togglePlay(uris, uri)}}
+                                        src={trackName === name && playing ? pauseImg: playImg} 
+                                        onClick={evt => {togglePlay(uris, uri, name)}}
                                     />
                                     <img 
                                         className='addTrack' 
@@ -97,7 +97,7 @@ const TracksTable = props => {
 TracksTable.propTypes = {
     tracks: PropTypes.object.isRequired,
     deviceId: PropTypes.string.isRequired,
-    playStatus: PropTypes.object.isRequired,
+    curState: PropTypes.object.isRequired,
     player: PropTypes.object.isRequired,
 };
 

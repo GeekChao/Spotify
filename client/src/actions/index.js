@@ -149,7 +149,7 @@ export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
     player.addListener('player_state_changed', state => { 
         console.log(state);
         const {position, duration, paused} = state;
-        const {current_track:{name:trackName, album:{images:albumImg}, artists, uri}} = state.track_window;
+        const {current_track:{name:trackName, album:{images:albumImg}, artists}} = state.track_window;
         const artistsName = truncateName(artists.map(({name}) => name).join(', '), 30);
         dispatch({
             type: action.UPDATE_PLAYER_STATE,
@@ -163,10 +163,7 @@ export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
                     position,
                     duration
                 },
-                playStatus: {
-                    playing: !paused,
-                    playTrackUri: uri
-                }
+                playing: !paused,
             }
         });
         });
