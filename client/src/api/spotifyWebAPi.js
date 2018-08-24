@@ -80,3 +80,7 @@ export function playTracks(deviceId, uris, uri){
 export function fetchRecentlyPlayTracks(){
     return wrapSpotifyWebAPi(() => spotify.getMyRecentlyPlayedTracks());
 }
+
+export function fetchSavedTracks(){
+    return wrapSpotifyWebAPi(() => spotify.getMySavedTracks());
+}

@@ -38,3 +38,5 @@ export const getDeviceId = (state) => fromPlayer.getDeviceId(state.get('musicPla
 export const getCurState = (state) => fromPlayer.getCurState(state.get('musicPlayer'));
 
 export const getRecentlyPlayTracks = (state) => fromLibrary.getRecentlyPlayTracks(state.get('library'));
+
+export const getSavedTracks = (state) => fromLibrary.getSavedTracks(state.get('library'));

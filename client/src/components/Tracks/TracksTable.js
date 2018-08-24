@@ -10,9 +10,12 @@ import addImg from '../../../public/images/add.png';
 import checkImg from '../../../public/images/check.png';
 import playImg from '../../../public/images/play.png';
 import pauseImg from '../../../public/images/pause.png';
+import {TAB_SONGS} from '../../constants';
 
 const TracksTable = props => {
-    const {tracks:{items}, deviceId, curState:{playing, curTrack:{trackName}}, player} = props;
+    const {tracks:{items}, deviceId, curState:{playing, curTrack:{trackName}}, player, path} = props;
+
+    const showAddIcon = !(path && path === TAB_SONGS)
 
     const togglePlay = (uris, uri, name) => {
         trackName === name && playing  ? ( 
@@ -68,11 +71,14 @@ const TracksTable = props => {
                                         src={trackName === name && playing ? pauseImg: playImg} 
                                         onClick={evt => {togglePlay(uris, uri, name)}}
                                     />
+                                {
+                                   showAddIcon &&
                                     <img 
                                         className='addTrack' 
                                         alt='add' 
                                         src={addImg}
                                     />
+                                }
                                 </td>
                                 <td>{truncateName(name, 33)}</td>
                                 <td>{artists[0].name}</td>

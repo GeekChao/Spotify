@@ -48,6 +48,29 @@ export const fetchRecentlyPlayTracks = () => {
         })); 
 }
 
+export const fetchSavedTracks = () => {
+    return api.fetchSavedTracks()
+        .then(data => {
+            //convert saved track obj to 'fake' playList obj
+            const items = data.items.map(({added_at, track}) => ({
+                added_at,
+                track
+            }));
+            return {
+                type: action.FETCH_SAVED_TRACKS_SUCCESS,
+                payload:{
+                    tracks: {items}
+                }
+            };
+        })
+        .catch(err => ({
+            type: action.FETCH_SAVED_TRACKS_FAIL,
+            payload: {
+                error: err.responseText
+            }
+        })); 
+}
+
 /**
  * fetch a list of playlists from the current user first, then fetch tracks from each playlist
  */

@@ -1,14 +1,17 @@
 import {Map, fromJS} from 'immutable';
-import {FETCH_RECENTLY_PLAY_SUCCESS} from '../constants';
+import {FETCH_RECENTLY_PLAY_SUCCESS, FETCH_SAVED_TRACKS_SUCCESS} from '../constants';
 import {combineReducers} from 'redux-immutable';
 
-const songsReducer = (state = Map(), action) => {
+const savedTracksReducer = (state = fromJS({
+    tracks: {items: []}
+}), action) => {
     switch(action.type){
-
+        case FETCH_SAVED_TRACKS_SUCCESS:
+            return state.mergeDeep(action.payload);
         default:
             return state;
-    } 
-}
+    }
+};
 
 const albumsReducer = (state = Map(), action) => {
     switch(action.type){
@@ -16,7 +19,7 @@ const albumsReducer = (state = Map(), action) => {
         default:
             return state;
     } 
-}
+};
 
 const artistisReducer = (state = Map(), action) => {
     switch(action.type){
@@ -24,7 +27,7 @@ const artistisReducer = (state = Map(), action) => {
         default:
             return state;
     } 
-}
+};
 
 const recentlyPlayTracksReducer = (state = fromJS({
     tracks: {items: []}
@@ -35,13 +38,15 @@ const recentlyPlayTracksReducer = (state = fromJS({
         default:
             return state;
     }    
-}
+};
 
 export default combineReducers({
     recentlyPlayTracks: recentlyPlayTracksReducer,
-    songs: songsReducer,
+    saveTracks: savedTracksReducer,
     albums: albumsReducer,
     artistis: artistisReducer
 });
 
 export const getRecentlyPlayTracks = state => state.get('recentlyPlayTracks').get('tracks');
+
+export const getSavedTracks = state => state.get('saveTracks').get('tracks');
