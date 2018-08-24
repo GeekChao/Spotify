@@ -28,7 +28,7 @@ class SearchTracks extends React.Component{
         return (
             <div>
                 {
-                    tracks == undefined ? 
+                    tracks.items.length === 0 ? 
                         <Redirect to={'/'}/> :
                         <TracksTable 
                             tracks={tracks} 

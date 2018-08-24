@@ -24,11 +24,11 @@ class LibraryTracks extends React.Component{
 
         switch(path){
             case TAB_RECENTLY_PLAY:
-                fetchFn = fetchSavedTracks;
+                fetchFn = fetchRecentlyPlayTracks;
                 errType = FETCH_RECENTLY_PLAY_FAIL;
                 break;
             case TAB_SONGS:
-                fetchFn = fetchRecentlyPlayTracks;
+                fetchFn = fetchSavedTracks;
                 errType = FETCH_SAVED_TRACKS_FAIL;
                 break;
             default:

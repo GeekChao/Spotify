@@ -10,10 +10,10 @@ const mapStateToProps = (state, ownProps) => {
     
     switch(path){
         case TAB_RECENTLY_PLAY:
-            selectorTracks = getSavedTracks;
+            selectorTracks = getRecentlyPlayTracks;
             break;
         case TAB_SONGS:
-            selectorTracks = getRecentlyPlayTracks;
+            selectorTracks = getSavedTracks;
             break;
         default:
             break;
