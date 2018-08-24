@@ -84,3 +84,7 @@ export function fetchRecentlyPlayTracks(){
 export function fetchSavedTracks(){
     return wrapSpotifyWebAPi(() => spotify.getMySavedTracks());
 }
+
+export function fetchSavedAlbums(){
+    return wrapSpotifyWebAPi(() => spotify.getMySavedAlbums());
+}

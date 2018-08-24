@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import TracksTable from '../Tracks/TracksTable';
 import {FETCH_SAVED_TRACKS_FAIL, FETCH_RECENTLY_PLAY_FAIL, TAB_RECENTLY_PLAY, TAB_SONGS} from '../../constants';
 import '../UI/load.css';
-import {fetchSavedTracks, fetchRecentlyPlayTracks} from '../../actions'
+import {fetchSavedTracks, fetchRecentlyPlayTracks} from '../../actions';
+import LibraryHeader from './LibraryHeader';
 
 class LibraryTracks extends React.Component{
     static propTypes = {
@@ -60,7 +61,12 @@ class LibraryTracks extends React.Component{
         if(this.state.loading && tracks.items.length === 0) return <p className="loading">Loading…</p>;
 
         return (
-            <div>
+            <div className='libraryTracks'>
+                <LibraryHeader
+                    tracks={tracks}
+                    deviceId={deviceId}
+                    path={path}
+                />
                 {
                     tracks &&
                         <TracksTable 

@@ -1,0 +1,4 @@
+.libraryTracks{
+    display: flex;
+    flex-direction: column;
+}

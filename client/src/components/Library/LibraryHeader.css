@@ -1,0 +1,23 @@
+.libraryHeader button{
+    outline: none;
+    color: white;
+    background: green;
+    border: 1px solid rgba(0, 0, 0, .8);
+    padding: .8em;
+    border-radius: 2em;
+    text-shadow: 1px 1px rgba(0, 0, 0, .5);
+    width: 8em;
+}
+
+.libraryHeader button:hover{
+    transform: scale(1.1);
+}
+
+.libraryHeader h1{
+    font-size: 2em;
+    margin: .5em 0;
+}
+
+.libraryHeader{
+    margin-bottom: 1em;
+}

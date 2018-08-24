@@ -58,7 +58,7 @@ export const FETCH_RECENTLY_PLAY_SUCCESS = 'FETCH_RECENTLY_PLAY_SUCCESS';
 
 export const FETCH_RECENTLY_PLAY_FAIL = 'FETCH_RECENTLY_PLAY_FAIL';
 
-export const TAB_RECENTLY_PLAY = '/recently_played';
+export const TAB_RECENTLY_PLAY = '/recently played';
 
 export const TAB_PLAYLIST = '/playlist';
 
@@ -66,3 +66,10 @@ export const TAB_SEARCH = '/search';
 
 export const TAB_SONGS = '/tracks';
 
+export const TAB_RADIO = '/radio';
+
+export const TAB_BROWSER = '/browser';
+
+export const TAB_ALBUMS = '/albums';
+
+export const TAB_ARTISTS = '/artists';
