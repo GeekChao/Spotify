@@ -30,16 +30,10 @@ const TracksTable = props => {
      * but #57acafcbdb4bc607922b834f is not a valid CSS selector, and document.querySelector() uses CSS selectors.
      * use attribute selector as a workaround solution
      */
-    const hoverRow = id => {
+    const hoverRow = id => visibility => {
         const selector = "tr[id='" + id + "'] " + ".playTrack";
-        const playBtn = document.querySelector(selector);
-        playBtn.style.visibility = 'visible';
-    }
-
-    const leaveRow = id => {
-        const selector = "tr[id='" + id + "'] " + ".playTrack";
-        const playBtn = document.querySelector(selector);
-        playBtn.style.visibility = 'hidden';
+        const playBtns = document.querySelectorAll(selector);
+        playBtns.forEach(btn => btn.style.visibility = visibility);
     }
 
     const uris = items.map(item => item.track.uri);
@@ -64,8 +58,8 @@ const TracksTable = props => {
                                 key={i} 
                                 type={type} 
                                 id={id} 
-                                onMouseOver={evt => hoverRow(id)} 
-                                onMouseOut={evt => leaveRow(id)}
+                                onMouseOver={evt => hoverRow(id)('visible')} 
+                                onMouseOut={evt => hoverRow(id)('hidden')}
                             >
                                 <td>
                                     <img 
