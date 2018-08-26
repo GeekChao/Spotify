@@ -32,3 +32,11 @@ table.TracksTable{
 .TracksTable td:first-child > *{
     width: 1.3em;
 }
+
+.TracksTable .playTrack, .TracksTable .addTrack{
+    vertical-align: middle;
+}
+
+.TracksTable .playTrack:hover, .TracksTable .addTrack:hover{
+    background: hsla(0, 100%, 100%, .2);
+}

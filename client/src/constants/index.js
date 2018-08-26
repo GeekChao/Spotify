@@ -100,7 +100,7 @@ export const TAB_PLAYLIST = '/playlist';
 
 export const TAB_SEARCH = '/search';
 
-export const TAB_SONGS = '/tracks';
+export const TAB_SONGS = '/songs';
 
 export const TAB_RADIO = '/radio';
 

@@ -40,8 +40,8 @@ class TracksTable extends React.Component{
         }
     }
 
-    togglePlay = (uris, uri, name, trackName) => {
-        const {deviceId, player} = this.props;
+    togglePlay = (uris, uri, name) => {
+        const {deviceId, player, curState:{playing, curTrack:{trackName}}} = this.props;
         trackName === name && playing  ? ( 
             player.pause()
             .then(() => console.log('pause a track'))
@@ -117,7 +117,7 @@ class TracksTable extends React.Component{
                                             className='playTrack' 
                                             alt='play' 
                                             src={trackName === name && playing ? pauseImg: playImg} 
-                                            onClick={evt => {this.togglePlay(uris, uri, name, trackName)}}
+                                            onClick={evt => {this.togglePlay(uris, uri, name)}}
                                         />                   
                                         <img 
                                             className='addTrack' 
