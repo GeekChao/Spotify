@@ -30,14 +30,15 @@ class Main extends React.Component{
                 <ToolBarContainer handleSearch={this.handleSearch} />
                 {didSearch && pathname !== tab.TAB_SEARCH && <Redirect to={tab.TAB_SEARCH}/>}
                 <Switch>
-                    <Route exact path={tab.TAB_HOME} render={() => <Redirect to={tab.TAB_BROWSER}/>}/>
-                    <Route path={tab.TAB_PLAYLIST} component={PlayListContainer} />
+                    <Route path={`${tab.TAB_PLAYLIST}/:playListId`} component={PlayListContainer} />
                     <Route path={tab.TAB_SEARCH} component={SearchTracksContainer} />
                     <Route path={tab.TAB_RECENTLY_PLAY} component={LibraryContainer} />
                     <Route path={tab.TAB_SONGS} component={LibraryContainer} />                                  
                     <Route path={tab.TAB_ALBUMS} component={GalleryContainer} />       
                     <Route path={tab.TAB_ARTISTS_TOP_TRACKS} component={LibraryArtistTopTracksContainer} />                                                             
-                    <Route path={tab.TAB_ARTISTS} component={GalleryContainer} />                                  
+                    <Route path={tab.TAB_ARTISTS} component={GalleryContainer} />     
+                    <Route path={tab.TAB_BROWSER} render={() => <div>Browser</div>} />     
+                    <Route path={tab.TAB_HOME} render={() => <Redirect to={tab.TAB_BROWSER}/>}/>                             
                 </Switch>
             </main>
         );

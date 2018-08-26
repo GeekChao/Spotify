@@ -17,6 +17,6 @@
     color: whitesmoke;
 }
 
-.SideBar a:focus::before{
+.SideBar a.active::before{
     background: green;
 }

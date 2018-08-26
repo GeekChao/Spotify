@@ -90,10 +90,11 @@ class App extends React.Component{
 
     render(){
         if(this.state.loading) return <p className="loading">Loading…</p>;
+        const {location} = this.props;
 
         return(
             <div className='App'>
-                <SideBarContainer />
+                <SideBarContainer location={location}/>
                 <Main />
                 <PlayerContainer />
             </div>

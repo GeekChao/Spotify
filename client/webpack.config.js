@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path');
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template:"./public/index.html",
@@ -8,6 +9,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 module.exports = {
     entry: './src/index.js',
     output: {
+        publicPath: '/',
         filename: 'bundle.js'
     },
     devServer: {

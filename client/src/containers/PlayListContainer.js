@@ -3,7 +3,7 @@ import {getPlayListInfo, getPlayListTracks, getDeviceId, getCurState, getPlayer}
 import PlayList from '../components/PlayList/PlayList';
 import toJS from '../util/toJS';
 
-const mapStateToProps = (state, {location:{state:{playListId}}}) => ({
+const mapStateToProps = (state, {match:{params:{playListId}}}) => ({
     playListInfo: getPlayListInfo(state, playListId),
     playListTracks: getPlayListTracks(state, playListId),
     deviceId: getDeviceId(state),
