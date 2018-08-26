@@ -1,11 +1,12 @@
 .gallery{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .gallery > *{
-    width: 22%;
+    width: 25%;
+    padding: .5em;
+    box-sizing: border-box;
 }
 
 .gallery .media{

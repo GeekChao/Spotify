@@ -56,7 +56,7 @@ class LibraryTracks extends React.Component{
     }
 
     render(){
-        const {tracks, deviceId, curState, player, path} = this.props;
+        const {tracks, deviceId, curState, player, path, dispatch} = this.props;
         const uris = tracks.items.map(item => item.track.uri);
 
         if(this.state.loading && tracks.items.length === 0) return <p className="loading">Loading…</p>;
@@ -75,7 +75,7 @@ class LibraryTracks extends React.Component{
                             deviceId={deviceId} 
                             curState={curState} 
                             player={player}
-                            path={path}
+                            dispatch={dispatch}
                         />
                 } 
             </div>

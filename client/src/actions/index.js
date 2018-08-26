@@ -21,3 +21,52 @@ export const fetchUser = () => {
             }
         }));
 };
+
+export const addToMySavedTracks = ids => {
+    return api.addToMySavedTracks(ids)
+        .then(() => {
+            return {
+                type: action.ADD_TO_MY_SAVED_TRACKS_SUCCESS,
+            };
+        })
+        .catch(err => ({
+            type: action.ADD_TO_MY_SAVED_TRACKS_FAIL,
+            payload: {
+                error: err.responseText
+            }
+        }));
+}
+
+export const removeFromMySavedTracks = ids => {
+    return api.removeFromMySavedTracks(ids)
+        .then(() => {
+            return {
+                type: action.REMOVE_FROM_SAVED_TRACKS_SUCCESS,
+            };
+        })
+        .catch(err => ({
+            type: action.REMOVE_FROM_SAVED_TRACKS_FAIL,
+            payload: {
+                error: err.responseText
+            }
+        }));
+}
+
+export const containsMySavedTracks = ids => {
+    return api.containsMySavedTracks(ids)
+        .then(data => {
+            let savedTrackIds = {};
+            ids.forEach((id, i) => savedTrackIds[id] = data[i]);
+
+            return {
+                type: action.CONTAINS_MY_SAVED_TRACKS_SUCCESS,
+                savedTrackIds
+            };
+        })
+        .catch(err => ({
+            type: action.CONTAINS_MY_SAVED_TRACKS_FAIL,
+            payload: {
+                error: err.responseText
+            }
+        }));
+}

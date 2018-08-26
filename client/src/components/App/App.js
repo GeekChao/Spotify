@@ -41,39 +41,35 @@ class App extends React.Component{
     }
 
     checkWindowSpotify = cb => {
-        const {dispatch} = this.props;
         const timerId = setInterval(() => {
             if(window.Spotify != null){
                 clearInterval(timerId);
-                dispatch(setUpPlayer())
-                    .then(() => {
-                        cb(null);
-                    })
-                    .catch(err => cb(err));
+                this.fetchApi(setUpPlayer)(cb);
             }
         }, 1000);
     };
+
+    fetchApi = api => cb => {
+        const {dispatch} = this.props;
+        dispatch(api())
+            .then(() => {
+                cb(null);
+            })
+            .catch(err => cb(err));
+}
 
     componentDidMount(){
         const {dispatch} = this.props;
         async.series([
             cb => {
-                dispatch(fetchUser())
-                    .then(() => {
-                        cb(null);
-                    })
-                    .catch(err => cb(err));
+                this.fetchApi(fetchUser)(cb);
             },
             cb => {
-                dispatch(fetchUserPlaylists())
-                    .then(() => {
-                        cb(null);
-                    })
-                    .catch(err => cb(err));
+                this.fetchApi(fetchUserPlaylists)(cb);
             },
             cb => {
                 this.checkWindowSpotify(cb);
-            }
+            },
         ], (err) => {
             if(err){
                 dispatch({

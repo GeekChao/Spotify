@@ -24,7 +24,7 @@ class SearchTracks extends React.Component{
     }
 
     render(){
-        const {tracks, deviceId, curState, player} = this.props;
+        const {tracks, deviceId, curState, player, dispatch} = this.props;
         return (
             <div>
                 {
@@ -35,6 +35,7 @@ class SearchTracks extends React.Component{
                             deviceId={deviceId} 
                             curState={curState} 
                             player={player}
+                            dispatch={dispatch}
                         />
                 }
             </div>

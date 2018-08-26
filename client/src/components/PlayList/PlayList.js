@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import '../UI/shared.css';
 
 const PlayList = props => {
-    const {playListInfo, playListTracks, deviceId, curState, player} = props;
+    const {playListInfo, playListTracks, deviceId, curState, player, dispatch} = props;
+
     return (
         <div className='PlayList'>
             <PlayListHeader 
@@ -18,6 +19,7 @@ const PlayList = props => {
                 deviceId={deviceId} 
                 curState={curState} 
                 player={player}
+                dispatch={dispatch}
             />
         </div>
     );

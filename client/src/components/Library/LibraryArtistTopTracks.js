@@ -40,7 +40,7 @@ class LibraryArtistTopTracks extends React.Component{
     render(){
         if(this.state.loading) return <p className="loading">Loading…</p>;
 
-        const {tracks, deviceId, curState, player, icon, artistName} = this.props;
+        const {tracks, deviceId, curState, player, icon, artistName, dispatch} = this.props;
         const uris = tracks.items.map(item => item.track.uri);
 
         return(
@@ -51,7 +51,7 @@ class LibraryArtistTopTracks extends React.Component{
                     </div>
                     <div className='info'>
                         <section>
-                            <h3>ARTIST FROM YOUR LIBRARY</h3>
+                            <h5>TOP TRACKS FROM YOUR LIBRARY ARTIST</h5>
                             <h1>{artistName}</h1>
                         </section>
                         <button onClick={evt => {this.play(uris, deviceId)}}>PLAY</button>
@@ -62,6 +62,7 @@ class LibraryArtistTopTracks extends React.Component{
                     deviceId={deviceId} 
                     curState={curState} 
                     player={player}
+                    dispatch={dispatch}
                 />
             </div>
         );

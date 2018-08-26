@@ -82,7 +82,7 @@ export function fetchRecentlyPlayTracks(){
 }
 
 export function fetchSavedTracks(){
-    return wrapSpotifyWebAPi(() => spotify.getMySavedTracks());
+    return wrapSpotifyWebAPi(() => spotify.getMySavedTracks({limit: 30}));
 }
 
 export function fetchArtists(ids){
@@ -92,3 +92,15 @@ export function fetchArtists(ids){
 export function fetchTracksFromArtist(id, market = 'US'){
     return wrapSpotifyWebAPi(() => spotify.getArtistTopTracks(id, market));
 } 
+
+export function addToMySavedTracks(ids){
+    return wrapSpotifyWebAPi(() => spotify.addToMySavedTracks(ids));
+} 
+
+export function containsMySavedTracks(ids){
+    return wrapSpotifyWebAPi(() => spotify.containsMySavedTracks(ids));
+}
+
+export function removeFromMySavedTracks(ids){
+    return wrapSpotifyWebAPi(() => spotify.removeFromMySavedTracks(ids));
+}

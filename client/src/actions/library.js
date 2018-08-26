@@ -63,7 +63,8 @@ export const fetchSavedTracks = () => (dispatch) => new Promise((resolve, reject
                             uri,
                             artistName: artists[0].name
                         });
-                        ids.push(artists[0].id);
+                        
+                        if(!ids.includes(artists[0].id)) ids.push(artists[0].id);
         
                         return {
                             added_at,
