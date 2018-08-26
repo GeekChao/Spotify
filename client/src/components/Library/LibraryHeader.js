@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {playTracks} from '../../api/spotifyWebAPi';
 import './libraryHeader.css';
+import '../UI/playBtn.css';
+import { TAB_ARTISTS } from '../../constants';
 
 const LibraryHeader = props => {
-    const {tracks:{items}, deviceId, path} = props;
-
-    const uris = items.map(item => item.track.uri);
+    const {uris, deviceId, path} = props;
 
     const play = (uris) => {
         playTracks(deviceId, uris)
@@ -14,18 +14,20 @@ const LibraryHeader = props => {
             .catch(err => console.log(err));
     }
 
+    const showPlayBtn = path === TAB_ARTISTS ? false : true;
+
     return (
         <div className='libraryHeader'>
             <section>
                 <h1>{path.substr(1).toUpperCase()}</h1>
-                <button onClick={evt => {play(uris)}} disabled={!uris.length}>PLAY</button>
+                {showPlayBtn && <button onClick={evt => {play(uris)}} disabled={!uris.length}>PLAY</button>}
             </section>
         </div>
     );
 };
 
 LibraryHeader.propTypes = {
-    tracks: PropTypes.object.isRequired,
+    uris: PropTypes.array.isRequired,
     deviceId: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired
 };

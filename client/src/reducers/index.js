@@ -40,3 +40,9 @@ export const getCurState = (state) => fromPlayer.getCurState(state.get('musicPla
 export const getRecentlyPlayTracks = (state) => fromLibrary.getRecentlyPlayTracks(state.get('library'));
 
 export const getSavedTracks = (state) => fromLibrary.getSavedTracks(state.get('library'));
+
+export const getAlbums = state => fromLibrary.getAlbums(state.get('library'));
+
+export const getArtists = state => fromLibrary.getArtists(state.get('library'));
+
+export const getArtistTopTracks = state => fromLibrary.getArtistTopTracks(state.get('library'));

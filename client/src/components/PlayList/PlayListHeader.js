@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './PlayListHeader.css';
+import '../UI/playBtn.css';
 import {playTracks} from '../../api/spotifyWebAPi';
 
 const PlayListHeader = props => {

@@ -1,0 +1,14 @@
+.libraryHeader button, .playList_info button, .libraryArtistTopTracks .info button{
+    outline: none;
+    color: white;
+    background: green;
+    border: 1px solid rgba(0, 0, 0, .8);
+    padding: .8em;
+    border-radius: 2em;
+    text-shadow: 1px 1px rgba(0, 0, 0, .5);
+    width: 8em;
+}
+
+.libraryHeader button:hover, .playList_info button:hover, .libraryArtistTopTracks .info button:hover{
+    transform: scale(1.1);
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {clearDidSearch} from '../../actions';
+import {clearDidSearch} from '../../actions/search';
 import PropTypes from 'prop-types';
 import {Redirect} from 'react-router-dom';
 import TracksTable from '../Tracks/TracksTable';

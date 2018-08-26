@@ -1,0 +1,25 @@
+.libraryArtistTopTracks .header{
+    display: flex;
+    margin-bottom: 1em;
+}
+
+.libraryArtistTopTracks .header .icon{
+    width: 22%;
+    margin-right: 1em;
+}   
+
+.libraryArtistTopTracks .icon img{
+    width: 100%;
+    height: auto;
+    border-radius: 10em;
+}
+
+.libraryArtistTopTracks .info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.libraryArtistTopTracks .info h1{
+    font-size: 2em;
+}

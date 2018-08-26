@@ -2,7 +2,7 @@ import React from 'react';
 import PlayListHeader from './PlayListHeader';
 import TracksTable from '../Tracks/TracksTable';
 import PropTypes from 'prop-types';
-import './PlayList.css';
+import '../UI/shared.css';
 
 const PlayList = props => {
     const {playListInfo, playListTracks, deviceId, curState, player} = props;

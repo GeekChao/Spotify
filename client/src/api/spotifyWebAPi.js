@@ -85,6 +85,10 @@ export function fetchSavedTracks(){
     return wrapSpotifyWebAPi(() => spotify.getMySavedTracks());
 }
 
-export function fetchSavedAlbums(){
-    return wrapSpotifyWebAPi(() => spotify.getMySavedAlbums());
-}
+export function fetchArtists(ids){
+    return wrapSpotifyWebAPi(() => spotify.getArtists(ids));
+} 
+
+export function fetchTracksFromArtist(id, market = 'US'){
+    return wrapSpotifyWebAPi(() => spotify.getArtistTopTracks(id, market));
+} 

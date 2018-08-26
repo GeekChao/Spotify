@@ -4,7 +4,9 @@ import {Switch, Route, withRouter, Redirect} from 'react-router-dom';
 import PlayListContainer from '../../containers/PlayListContainer';
 import SearchTracksContainer from '../../containers/SearchTracksContainer';
 import LibraryContainer from '../../containers/LibraryContainer';
-import {fetchSearchTracks} from '../../actions';
+import GalleryContainer from '../../containers/GalleryContainer';
+import LibraryArtistTopTracksContainer from '../../containers/LibraryArtistTopTracksContainer';
+import {fetchSearchTracks} from '../../actions/search';
 import {connect} from 'react-redux';
 import {getDidSearch} from '../../reducers';
 import './Main.css';
@@ -33,6 +35,9 @@ class Main extends React.Component{
                     <Route path={tab.TAB_SEARCH} component={SearchTracksContainer} />
                     <Route path={tab.TAB_RECENTLY_PLAY} component={LibraryContainer} />
                     <Route path={tab.TAB_SONGS} component={LibraryContainer} />                                  
+                    <Route path={tab.TAB_ALBUMS} component={GalleryContainer} />       
+                    <Route path={tab.TAB_ARTISTS_TOP_TRACKS} component={LibraryArtistTopTracksContainer} />                                                             
+                    <Route path={tab.TAB_ARTISTS} component={GalleryContainer} />                                  
                 </Switch>
             </main>
         );
