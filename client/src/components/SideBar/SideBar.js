@@ -13,7 +13,7 @@ const SideBar = props => {
                 <li><NavLink to={tab.TAB_RADIO}>Radio</NavLink></li>
             </ul>
             <section>
-                <h3>YOUR LIBRARY</h3>
+                <h5>YOUR LIBRARY</h5>
                 <ul>
                     <li><NavLink to={tab.TAB_RECENTLY_PLAY}>Recently Played</NavLink></li>
                     <li><NavLink to={tab.TAB_SONGS}>Songs</NavLink></li>
@@ -22,7 +22,7 @@ const SideBar = props => {
                 </ul>
             </section>
             <section>
-                <h3>PLAYLISTS</h3>
+                <h5>PLAYLISTS</h5>
                 <ul>
                     {
                         Object.entries(playListsInfo)
