@@ -9,7 +9,7 @@ const SideBar = props => {
     return (
         <aside className='SideBar'>
             <ul>
-                <li><NavLink to={tab.TAB_BROWSER}>Browse</NavLink></li>
+                <li><NavLink to={tab.TAB_BROWSE}>Browse</NavLink></li>
                 <li><NavLink to={tab.TAB_RADIO}>Radio</NavLink></li>
             </ul>
             <section>

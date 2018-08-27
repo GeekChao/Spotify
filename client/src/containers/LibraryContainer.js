@@ -28,4 +28,6 @@ const mapStateToProps = (state, ownProps) => {
     };
 } 
 
-export default connect(mapStateToProps)(toJS(LibraryTracks));
+const LibraryContainer = connect(mapStateToProps)(toJS(LibraryTracks));
+
+export default LibraryContainer;

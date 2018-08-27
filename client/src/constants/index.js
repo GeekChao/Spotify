@@ -40,6 +40,8 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 
 export const INIT_APP_ERROR = 'INIT_APP_ERROR';
 
+export const INIT_BROWSE_ERROR = 'INIT_BROWSE_ERROR';
+
 export const FETCH_ALBUMS_REQUEST = 'FETCH_ALBUMS_REQUEST';
 
 export const FETCH_ALBUMS_SUCCESS = 'FETCH_ALBUMS_SUCCESS';
@@ -69,6 +71,24 @@ export const FETCH_MY_ALBUMS_REQUEST = 'FETCH_MY_ALBUMS_REQUEST';
 export const FETCH_MY_ALBUMS_SUCCESS = 'FETCH_MY_ALBUMS_SUCCESS';
 
 export const FETCH_MY_ALBUMS_FAIL = 'FETCH_MY_ALBUMS_FAIL';
+
+export const FETCH_NEW_RELEASES_REQUEST = 'FETCH_NEW_RELEASES_REQUEST';
+
+export const FETCH_NEW_RELEASES_SUCCESS = 'FETCH_NEW_RELEASES_SUCCESS';
+
+export const FETCH_NEW_RELEASES_FAIL = 'FETCH_NEW_RELEASES_FAIL';
+
+export const FETCH_CATEGORIES_REQUEST = 'FETCH_CATEGORIES_REQUEST';
+
+export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
+
+export const FETCH_CATEGORIES_FAIL = 'FETCH_CATEGORIES_FAIL';
+
+export const FETCH_FEATURED_PLAYLISTS_REQUEST = 'FETCH_FEATURED_PLAYLISTS_REQUEST';
+
+export const FETCH_FEATURED_PLAYLISTS_SUCCESS = 'FETCH_FEATURED_PLAYLISTS_SUCCESS';
+
+export const FETCH_FEATURED_PLAYLISTS_FAIL = 'FETCH_FEATURED_PLAYLISTS_FAIL';
 
 export const FETCH_RECENTLY_PLAY_REQUEST = 'FETCH_RECENTLY_PLAY_REQUEST';
 
@@ -104,14 +124,20 @@ export const TAB_SONGS = '/songs';
 
 export const TAB_RADIO = '/radio';
 
-export const TAB_BROWSER = '/browser';
-
 export const TAB_ALBUMS = '/albums';
 
 export const TAB_ARTISTS = '/artists';
 
-export const TAB_ARTISTS_TOP_TRACKS = '/toptracks';
+export const TAB_BROWSE = '/browse';
+
+export const TAB_ARTISTS_TOP_TRACKS = '/artist/toptracks';
 
 export const TAB_HOME = '/';
+
+export const TAB_BROWSE_CATEGORIES = '/browse/categories';
+
+export const TAB_BROWSE_NEW_RELEASES = '/browse/newReleases';
+
+export const TAB_BROWSE_FEATURED_PLAYLISTS = '/browse/featuredPlaylists';
 
 export const NAME_LIMIT_LENGTH = 30;

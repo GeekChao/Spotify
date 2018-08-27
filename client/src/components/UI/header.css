@@ -1,8 +1,8 @@
-.libraryHeader h1{
+.libraryHeader h1, .browseHeader h1{
     font-size: 2em;
     margin: .5em 0;
 }
 
-.libraryHeader{
+.libraryHeader, .browseHeader{
     margin-bottom: 1em;
 }

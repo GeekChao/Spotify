@@ -1,23 +1,6 @@
-.gallery{
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10%;
-}
-
-.gallery > *{
-    width: 25%;
-    padding: .5em;
-    box-sizing: border-box;
-}
-
 .gallery .media{
     display: flex;
     flex-direction: column-reverse;
-}
-
-.gallery .media-icon > img{
-    width: 100%;
-    height: auto;
 }
 
 .gallery .albums .media-icon{

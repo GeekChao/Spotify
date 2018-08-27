@@ -8,5 +8,6 @@ const mapStateToProps = (state) => ({
     curState: getCurState(state)
 });
 
+const PlayerContainer =connect(mapStateToProps)(toJS(Player));
 
-export default connect(mapStateToProps)(toJS(Player));
+export default PlayerContainer;

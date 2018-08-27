@@ -8,4 +8,6 @@ const mapStateToProps = (state, {handleSearch}) => ({
     handleSearch,
 });
 
-export default connect(mapStateToProps)(toJS(ToolBar));
+const ToolBarContainer = connect(mapStateToProps)(toJS(ToolBar));
+
+export default ToolBarContainer;

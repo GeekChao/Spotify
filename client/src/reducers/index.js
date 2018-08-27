@@ -6,6 +6,7 @@ import searchTracksReducer, * as fromSearchTracks from './searchTracksReducer';
 import didSearchReducer, * as fromSearch from './didSearchReducer';
 import musicPlayerReducer, * as fromPlayer from './musicPlayerReducer';
 import libraryReducer, * as fromLibrary from './libraryReducer';
+import BrowseReducer, * as fromBrowse from '../reducers/BrowseReducer';
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     searchTracks: searchTracksReducer,
     didSearch: didSearchReducer,
     musicPlayer: musicPlayerReducer,
-    library: libraryReducer
+    library: libraryReducer,
+    browse: BrowseReducer
 });
 
 export default rootReducer;
@@ -46,3 +48,9 @@ export const getAlbums = state => fromLibrary.getAlbums(state.get('library'));
 export const getArtists = state => fromLibrary.getArtists(state.get('library'));
 
 export const getArtistTopTracks = state => fromLibrary.getArtistTopTracks(state.get('library'));
+
+export const getCategories = state => fromBrowse.getCategories(state.get('browse'));
+
+export const getNewReleases = state => fromBrowse.getNewReleases(state.get('browse'));
+
+export const getFeaturedPlayLists = state => fromBrowse.getFeaturedPlayLists(state.get('browse'));

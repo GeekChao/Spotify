@@ -11,4 +11,6 @@ const mapStateToProps = (state, {match:{params:{playListId}}}) => ({
     curState: getCurState(state)
 });
 
-export default connect(mapStateToProps)(toJS(PlayList));
+const PlayListContainer = connect(mapStateToProps)(toJS(PlayList));
+
+export default PlayListContainer;

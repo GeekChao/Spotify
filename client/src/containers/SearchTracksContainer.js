@@ -11,4 +11,6 @@ const mapStateToProps = (state) => ({
     player: getPlayer(state)
 }); 
 
-export default connect(mapStateToProps)(toJS(SearchTracks));
+const SearchTracksContainer = connect(mapStateToProps)(toJS(SearchTracks));
+
+export default SearchTracksContainer;

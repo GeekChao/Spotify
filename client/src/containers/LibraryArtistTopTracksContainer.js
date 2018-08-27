@@ -17,5 +17,6 @@ const mapStateToProps = (state, ownProps) => {
     };
 }
 
-export default connect(mapStateToProps)(toJS(LibraryArtistTopTracks));
+const LibraryArtistTopTracksContainer = connect(mapStateToProps)(toJS(LibraryArtistTopTracks));
 
+export default LibraryArtistTopTracksContainer;

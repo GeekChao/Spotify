@@ -56,7 +56,7 @@ class App extends React.Component{
                 cb(null);
             })
             .catch(err => cb(err));
-}
+    }
 
     componentDidMount(){
         const {dispatch} = this.props;
@@ -90,11 +90,10 @@ class App extends React.Component{
 
     render(){
         if(this.state.loading) return <p className="loading">Loading…</p>;
-        const {location} = this.props;
-
+        
         return(
             <div className='App'>
-                <SideBarContainer location={location}/>
+                <SideBarContainer />
                 <Main />
                 <PlayerContainer />
             </div>

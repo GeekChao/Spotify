@@ -3,13 +3,14 @@ import {fetchSavedTracks} from '../../actions/library';
 import PropTypes from 'prop-types';
 import {TAB_ALBUMS, NAME_LIMIT_LENGTH, TAB_ARTISTS_TOP_TRACKS} from '../../constants';
 import {truncateName} from '../../util/truncate';
-import './gallery.css';
+import './libraryGallery.css';
+import '../UI/gallery.css';
 import {playTracks} from '../../api/spotifyWebAPi';
 import LibraryHeader from './LibraryHeader';
 import {Redirect} from 'react-router-dom';
 import '../UI/load.css';
 
-class Gallery extends React.Component{
+class LibraryGallery extends React.Component{
     static propTypes = {
         items: PropTypes.array.isRequired,
         deviceId: PropTypes.string.isRequired,
@@ -100,4 +101,4 @@ class Gallery extends React.Component{
     }
 }
 
-export default Gallery;
+export default LibraryGallery;

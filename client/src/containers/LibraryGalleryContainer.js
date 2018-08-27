@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Gallery from '../components/Library/Gallery';
+import LibraryGallery from '../components/Library/LibraryGallery';
 import {getAlbums, getArtists, getPlayer, getDeviceId} from '../reducers';
 import {TAB_ALBUMS, TAB_ARTISTS} from '../constants';
 import toJS from '../util/toJS';
@@ -27,4 +27,6 @@ const mapStateToProps = (state, ownProps) => {
     };
 }
 
-export default connect(mapStateToProps)(toJS(Gallery));
+const LibraryGalleryContainer = connect(mapStateToProps)(toJS(LibraryGallery));
+
+export default LibraryGalleryContainer;

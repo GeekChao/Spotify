@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {playTracks} from '../../api/spotifyWebAPi';
-import './libraryHeader.css';
+import '../UI/header.css';
 import '../UI/playBtn.css';
 import { TAB_ARTISTS } from '../../constants';
 

@@ -104,3 +104,15 @@ export function containsMySavedTracks(ids){
 export function removeFromMySavedTracks(ids){
     return wrapSpotifyWebAPi(() => spotify.removeFromMySavedTracks(ids));
 }
+
+export function fetchCategories(){
+    return wrapSpotifyWebAPi(() => spotify.getCategories());
+}
+
+export function fetchNewReleases(){
+    return wrapSpotifyWebAPi(() => spotify.getNewReleases());    
+}
+
+export function fetchFeaturedPlayLists(){
+    return wrapSpotifyWebAPi(() => spotify.getFeaturedPlaylists());    
+}

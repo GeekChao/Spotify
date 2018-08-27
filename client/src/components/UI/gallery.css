@@ -1,0 +1,16 @@
+.gallery, .browseGallery{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10%;
+}
+
+.gallery > *, .browseGallery > *{
+    width: 25%;
+    padding: .5em;
+    box-sizing: border-box;
+}
+
+.gallery img, .browseGallery img{
+    width: 100%;
+    height: auto;
+}

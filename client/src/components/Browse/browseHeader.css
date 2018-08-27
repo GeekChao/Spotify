@@ -1,0 +1,15 @@
+.browseHeader ul{
+    display: flex;
+}
+
+.browseHeader ul > li{
+    margin-right: 1em;
+}
+
+.browseHeader li > a.active::after{
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 2em;
+    border-bottom: 1px solid green;
+}
