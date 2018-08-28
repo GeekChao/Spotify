@@ -57,12 +57,7 @@ class App extends React.Component{
             .then(() => {
                 cb(null);
             })
-            .catch(err => {
-                if(browser.name === 'safari'){
-                    cb('Safari does not support player, please use other browsers instead!');
-                }
-                cb(err);
-            });
+            .catch(err => cb(err));
     }
 
     componentDidMount(){
@@ -76,7 +71,11 @@ class App extends React.Component{
                 this.fetchApi(fetchUserPlaylists)(cb);
             },
             cb => {
-                this.checkWindowSpotify(cb);
+                if(browser.name === 'safari'){
+                    cb('Safari does not support player, please use other browsers instead!');
+                }else{
+                    this.checkWindowSpotify(cb);
+                }
             },
         ], (err) => {
             if(err){

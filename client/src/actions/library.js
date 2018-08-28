@@ -29,7 +29,6 @@ export const fetchRecentlyPlayTracks = () => {
 export const fetchTracksFromArtist = id => {
     return api.fetchTracksFromArtist(id)
         .then(data => {
-            console.log(data);
             //convert track obj to 'fake' playList obj
             const items = data.tracks.map(track => ({
                 added_at: truncateDate(new Date().toISOString()),
