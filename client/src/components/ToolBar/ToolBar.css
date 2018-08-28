@@ -33,6 +33,7 @@
 .ToolBar .avatar > img{
     width: auto;
     height: 100%;
+    max-width: 2em;
     border-radius: 50em;
     vertical-align: middle;
 }

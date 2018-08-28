@@ -10,6 +10,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         publicPath: '/',
+        path: path.resolve(__dirname, '../server/public'),
         filename: 'bundle.js'
     },
     devServer: {
