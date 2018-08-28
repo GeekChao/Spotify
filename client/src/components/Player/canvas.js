@@ -1,10 +1,10 @@
 import {VOLUME_CONTROLLER, PROGRESS_CONTROLLER} from '../../constants';
 import {convertMSToMin} from '../../util/convertDate';
+import Controller from '../../model/Controller';
 
 let canvasArr;
-let canvasMap = new Map();
-let ctxMap = new Map();
-let preXMap = new Map(), endMap = new Map(), isDraggingMap = new Map(), startMap = new Map();
+const volumeController = new Controller();
+const progressController = new Controller();
 let startTime = null;
 const radius = 8;
 const textWidth = 50;
@@ -27,24 +27,26 @@ export const initCanvas = player => {
     canvasArr.forEach(canvas => {
         const ctx = canvas.getContext('2d');
         const type = canvas.getAttribute('type');
-        ctxMap.set(type, canvas.getContext('2d'));
-        canvasMap.set(type, canvas);
 
         if(type === VOLUME_CONTROLLER){
-            startMap.set(type, radius);
-            preXMap.set(type, canvas.width - radius);
-            endMap.set(type, canvas.width - radius);
+            volumeController.canvas = canvas;
+            volumeController.context = ctx;
+            volumeController.start = radius;
+            volumeController.preX = canvas.width - radius;
+            volumeController.end = canvas.width - radius;
         }else if(type === PROGRESS_CONTROLLER){
-            startMap.set(type, radius + textWidth);
-            preXMap.set(type, canvas.width - radius - textWidth);
-            endMap.set(type, canvas.width - radius - textWidth);
+            progressController.canvas = canvas;
+            progressController.context = ctx;
+            progressController.start = radius + textWidth;
+            progressController.preX = canvas.width - radius;
+            progressController.end = canvas.width - radius - textWidth;
         }
 
         canvas.addEventListener('click', evt => {
             if(type === VOLUME_CONTROLLER){
                 let clickX = evt.pageX - canvas.offsetLeft;
 
-                drawProgressController(canvas)(ctx)(type)(clickX);
+                drawProgressController(type)(clickX);
                 adjustVolume(player)(clickX / canvas.width);
             }
         });
@@ -52,65 +54,66 @@ export const initCanvas = player => {
         canvas.addEventListener('mousedown', evt => { 
             if(type === VOLUME_CONTROLLER){
                 let clickX = evt.pageX - canvas.offsetLeft;
-                isDraggingMap.set(type, true);
-
+                volumeController.isDragging = true;
                 if(clickX >= preXMap.get(type) - radius && clickX <= preXMap.get(type) + radius){
-                    drawProgressController(canvas)(ctx)(type)(clickX);
+                    drawProgressController(type)(clickX);
                 }
             }
         });
         
         canvas.addEventListener('mousemove', evt => {
-            if(isDraggingMap.get(type)){
+            if(volumeController.isDragging){
                 let clickX = evt.pageX - canvas.offsetLeft;
 
                 if(type === VOLUME_CONTROLLER){
-                    drawProgressController(canvas)(ctx)(type)(clickX);
+                    drawProgressController(type)(clickX);
                     adjustVolume(player)(clickX / canvas.width);
                 }
             }
         });
         
         canvas.addEventListener('mouseup', () => {
-            isDraggingMap.set(type, false);
+            volumeController.isDragging = false;
         });
         
         canvas.addEventListener('mouseout', () => {
-            isDraggingMap.set(type, false);
+            volumeController.isDragging = false;
             ctx.fillStyle= 'white';
             ctx.fill();
         });
         
         if(type === VOLUME_CONTROLLER){
-            drawProgressController(canvas)(ctx)(type)(endMap.get(type));
+            drawProgressController(type)(volumeController.end);
         }else if(type === PROGRESS_CONTROLLER){
-            drawProgressController(canvas)(ctx)(type)(startMap.get(type));
+            drawProgressController(type)(progressController.start);
         }
     });
 };
 
-export const drawProgressController = canvas => ctx => type => posX => {
+export const drawProgressController = type => posX => {
+    const controller = type === VOLUME_CONTROLLER ? volumeController : progressController;
     const rectHeight = 4;
-    const rectX = startMap.get(type);
-    const rectY = canvas.height / 2 - rectHeight / 2;
-    const arcY = canvas.height / 2;
+    const rectX = controller.start;
+    const rectY = controller.canvas.height / 2 - rectHeight / 2;
+    const arcY = controller.canvas.height / 2;
+    const ctx = controller.context;
 
-    if(posX > endMap.get(type)) posX = endMap.get(type);
-    if(posX < startMap.get(type)) posX = startMap.get(type);
-    preXMap.set(type, posX);
+    if(posX > controller.end) posX = controller.end;
+    if(posX < controller.start) posX = controller.start;
+    controller.preX = posX;
     
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, controller.canvas.width, controller.canvas.height);
     ctx.beginPath();
     ctx.fillStyle = 'green';
     ctx.fillRect(rectX, rectY, posX - rectX, rectHeight);
     ctx.fillStyle = 'hsla(0, 100%, 100%, .5)';
-    ctx.fillRect(posX, rectY, endMap.get(type) - posX, rectHeight);
+    ctx.fillRect(posX, rectY, controller.end - posX, rectHeight);
     ctx.fillStyle = 'white';
     ctx.arc(posX, arcY, radius, 0, 360);
     ctx.fill();
     ctx.closePath();
 
-    if(isDraggingMap.get(type)){
+    if(controller.isDragging){
         ctx.beginPath();
         ctx.fillStyle= 'rgba(0, 0, 0, .5)';
         ctx.arc(posX, arcY, radius / 2, 0, 360);
@@ -130,13 +133,14 @@ export const drawProgressController = canvas => ctx => type => posX => {
 }
 
 const step = type => duration => position => timestamp => {
+    const controller = type === VOLUME_CONTROLLER ? volumeController : progressController;
     if(!startTime) startTime = timestamp;
     progress = timestamp - startTime + position;
     const percent = progress / duration;
-    const canvas = canvasMap.get(type);
+    const canvas = controller.canvas;
     const posX = (canvas.width - radius * 2 - textWidth * 2) * percent + radius + textWidth;
 
-    drawProgressController(canvas)(ctxMap.get(type))(type)(posX);
+    drawProgressController(type)(posX);
 
     if(percent < 1){
         requestAnimationId = window.requestAnimationFrame(step(type)(duration)(position));
@@ -150,11 +154,11 @@ export const animate = type => duration => position => {
 }
 
 export const resetCanvas = type => {
-    const canvas = canvasMap.get(type);
+    const controller = type === VOLUME_CONTROLLER ? volumeController : progressController;
     window.cancelAnimationFrame(requestAnimationId);
     startTime = null;
     totalTime = 0;
-    drawProgressController(canvas)(ctxMap.get(type))(type)(startMap.get(type));
+    drawProgressController(type)(controller.start);
 }
 
 export const cancelAnimation = () => {
