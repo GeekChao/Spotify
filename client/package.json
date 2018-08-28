@@ -4,8 +4,8 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --env.API_URL=http://localhost:8888 --mode development --open --hot",
+    "build": "webpack --env.API_URL=https://kevinzou.herokuapp.com --mode production"
   },
   "author": "",
   "license": "ISC",

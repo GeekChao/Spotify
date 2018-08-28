@@ -1,12 +1,13 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
+const webpack = require('webpack');
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template:"./public/index.html",
     filename:"index.html"
 });
 
-module.exports = {
+module.exports = env => ({
     entry: './src/index.js',
     output: {
         publicPath: '/',
@@ -43,5 +44,8 @@ module.exports = {
         }
       ]
     },
-    plugins: [htmlPlugin]
-  };
+    plugins: [
+        htmlPlugin,
+        new webpack.DefinePlugin({[`process.env.API_URL`]: JSON.stringify(`${env.API_URL}`)})
+      ]
+  });
