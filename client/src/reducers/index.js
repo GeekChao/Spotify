@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux-immutable';
 import userReducer, * as fromUser from './userReducer';
 import playListsReducer, * as fromPlayLists from './playListsReducer';
-import errorReducer from './errorReducer';
+import errorReducer, * as fromError from './errorReducer';
 import searchTracksReducer, * as fromSearchTracks from './searchTracksReducer';
 import didSearchReducer, * as fromSearch from './didSearchReducer';
 import musicPlayerReducer, * as fromPlayer from './musicPlayerReducer';
@@ -54,3 +54,5 @@ export const getCategories = state => fromBrowse.getCategories(state.get('browse
 export const getNewReleases = state => fromBrowse.getNewReleases(state.get('browse'));
 
 export const getFeaturedPlayLists = state => fromBrowse.getFeaturedPlayLists(state.get('browse'));
+
+export const getErrorMsg = state => fromError.getErrorMsg(state.get('error'));

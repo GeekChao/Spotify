@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ToolBar.css';
+import ErrorContainer from '../../containers/ErrorContainer';
 
 class ToolBar extends React.Component{
     state = {
@@ -29,6 +30,7 @@ class ToolBar extends React.Component{
                     <input type='text' name='value' value={value} onChange={this.handleChange} />
                     <button onClick={this.handleSearch} disabled={!this.validate()}>search</button>
                 </div>
+                <ErrorContainer />
                 <div className='avatar'>
                     <img alt='avatar' src={avatar_url}/>
                     <span>{display_name}</span>

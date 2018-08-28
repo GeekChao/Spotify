@@ -44,7 +44,7 @@ app.get('/callback', function(req, res) {
   request.post(authOptions, function(error, response, body) {
     var access_token = body.access_token
     var refresh_token = body.refresh_token
-    let uri = process.env.FRONTEND_URI || ''
+    let uri = process.env.FRONTEND_URI || 'http://localhost:8081'
     res.redirect(uri + '/#' +
     querystring.stringify({
       access_token: access_token,

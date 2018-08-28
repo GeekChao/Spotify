@@ -78,6 +78,7 @@ class App extends React.Component{
                         error: err
                     }
                 });
+                this.setState({loading: false});
             }
             this.setState({loading: false});
         });

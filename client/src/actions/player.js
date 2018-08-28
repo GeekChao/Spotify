@@ -8,7 +8,7 @@ export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
         getOAuthToken: cb => { 
             api.refreshToken()
                 .then(access_token => cb(access_token))
-                .catch(err => console.error(err));
+                .catch(err => reject(err));
         },
         volume: 1
     });
@@ -21,10 +21,10 @@ export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
     });
     
     // Error handling
-    player.addListener('initialization_error', ({ message }) => { console.error(message); });
-    player.addListener('authentication_error', ({ message }) => { console.error(message); });
-    player.addListener('account_error', ({ message }) => { console.error(message); });
-    player.addListener('playback_error', ({ message }) => { console.error(message); });
+    player.addListener('initialization_error', ({ message }) => { reject(message); });
+    player.addListener('authentication_error', ({ message }) => { reject(message); });
+    player.addListener('account_error', ({ message }) => { reject(message); });
+    player.addListener('playback_error', ({ message }) => { reject(message); });
 
     // Playback status updates
     player.addListener('player_state_changed', state => { 

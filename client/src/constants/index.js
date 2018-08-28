@@ -2,9 +2,9 @@ export const SPOTIFY_ACCESS_TOKEN = 'SPOTIFY_ACCESS_TOKEN';
 
 export const SPOTIFY_REFRESH_TOKEN = 'SPOTIFY_REFRESH_TOKEN';
 
-export const AUTH_URL = '/api/login';
+export const AUTH_URL = process.env.PRODUCTION ? '/api/login': 'http://localhost:8888/api/login';
 
-export const REFRESH_TOKEN_URL = '/api/refresh_token';
+export const REFRESH_TOKEN_URL = process.env.PRODUCTION ? '/api/refresh_token': 'http://localhost:8888/api/refresh_token';
 
 export const FETCH_USER_REQUEST = 'FETCH_USER_REQUEST';
 
