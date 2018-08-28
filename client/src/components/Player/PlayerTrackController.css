@@ -9,7 +9,7 @@
 .playerTrackController .controller > *{
     height: 2em;
     width: auto;
-    margin: .5em;
+    margin: .5em .5em 0 .5em;
 }
 
 .playerTrackController .controller > *:hover{

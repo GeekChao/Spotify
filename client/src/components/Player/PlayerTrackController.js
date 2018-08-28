@@ -6,10 +6,11 @@ import playImg from '../../../public/images/play.png';
 import forwardImg from '../../../public/images/forward.png';
 import backwardImg from '../../../public/images/backward.png';
 import pauseImg from '../../../public/images/pause.png';
-import {PROGRESS_CONTROLLER} from '../../constants'
+import {PROGRESS_CONTROLLER} from '../../constants';
+import {convertMSToMin} from '../../util/convertDate'
 
 const PlayerTrackController = props => {
-    const {player, curState:{playing, progress}} = props;
+    const {player, curState:{playing, progress:{duration, position}}} = props;
 
     const play = () => {
         player.togglePlay().then(() => {
@@ -36,7 +37,7 @@ const PlayerTrackController = props => {
                 <img onClick={play} alt='play' src={playing ? pauseImg : playImg}/>
                 <img onClick={forward} alt='forward' src={forwardImg}/>
             </div>
-            <ProgressBar player={player} type={PROGRESS_CONTROLLER}/>
+            <ProgressBar type={PROGRESS_CONTROLLER} {...props}/>
         </div>
     );
 };

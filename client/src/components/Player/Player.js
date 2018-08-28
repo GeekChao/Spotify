@@ -6,11 +6,11 @@ import PlayerVolumeController from './PlayerVolumeController';
 import './Player.css';
 
 const Player = props => {
-    const {player, curState} = props;
+    const {curState, player} = props;
     return (
         <div className='player'>
             <PlayerTrackInfo curState={curState}/>
-            <PlayerTrackController player={player} curState={curState}/>
+            <PlayerTrackController {...props}/>
             <PlayerVolumeController player={player}/>
         </div>
     );

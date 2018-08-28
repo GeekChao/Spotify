@@ -148,4 +148,4 @@ export const PROGRESS_CONTROLLER = 'PROGRESS_CONTROLLER';
 
 export const VOLUME_CANVAS_WIDTH = '120px';
 
-export const PROGRESS_CANVAS_WIDTH = '400px';
+export const PROGRESS_CANVAS_WIDTH = '500px';

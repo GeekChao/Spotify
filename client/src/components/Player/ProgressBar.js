@@ -1,17 +1,35 @@
 import React from 'react';
-import initCanvas from './canvas';
+import {initCanvas, animate, resetCanvas, cancelAnimation, resumeAnimation} from './canvas';
 import PropTypes from 'prop-types';
 import {VOLUME_CANVAS_WIDTH, VOLUME_CONTROLLER, PROGRESS_CANVAS_WIDTH, PROGRESS_CONTROLLER} from '../../constants';
 
 class ProgressBar extends React.Component {
     static propTypes = {
         player: PropTypes.object.isRequired,
-        type: PropTypes.string.isRequired
+        type: PropTypes.string.isRequired,
+        curState: PropTypes.object
     };
 
     componentDidMount(){
         const {player} = this.props;
         initCanvas(player);
+    }
+
+    componentWillReceiveProps(newProps){
+        const {type} = newProps;
+
+        if(type === PROGRESS_CONTROLLER){
+            const {type, curState:{playing, progress:{duration, position}}} = newProps;
+            
+            if(position === 0 && playing && duration){
+                resetCanvas(type);
+                animate(type)(duration)(position);
+            }else if(!playing){
+                cancelAnimation();
+            }else if(position && playing && duration){
+                resumeAnimation(type)(duration)(position);
+            }
+        }
     }
 
     render(){
