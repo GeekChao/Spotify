@@ -141,3 +141,11 @@ export const TAB_BROWSE_NEW_RELEASES = '/browse/newReleases';
 export const TAB_BROWSE_FEATURED_PLAYLISTS = '/browse/featuredPlaylists';
 
 export const NAME_LIMIT_LENGTH = 30;
+
+export const VOLUME_CONTROLLER = 'VOLUME_CONTROLLER';
+
+export const PROGRESS_CONTROLLER = 'PROGRESS_CONTROLLER';
+
+export const VOLUME_CANVAS_WIDTH = '120px';
+
+export const PROGRESS_CANVAS_WIDTH = '400px';

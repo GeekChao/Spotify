@@ -9,7 +9,8 @@ export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
             api.refreshToken()
                 .then(access_token => cb(access_token))
                 .catch(err => console.error(err));
-        }
+        },
+        volume: 1
     });
 
     dispatch({

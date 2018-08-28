@@ -6,6 +6,7 @@ import playImg from '../../../public/images/play.png';
 import forwardImg from '../../../public/images/forward.png';
 import backwardImg from '../../../public/images/backward.png';
 import pauseImg from '../../../public/images/pause.png';
+import {PROGRESS_CONTROLLER} from '../../constants'
 
 const PlayerTrackController = props => {
     const {player, curState:{playing, progress}} = props;
@@ -35,7 +36,7 @@ const PlayerTrackController = props => {
                 <img onClick={play} alt='play' src={playing ? pauseImg : playImg}/>
                 <img onClick={forward} alt='forward' src={forwardImg}/>
             </div>
-            <ProgressBar />
+            <ProgressBar player={player} type={PROGRESS_CONTROLLER}/>
         </div>
     );
 };
