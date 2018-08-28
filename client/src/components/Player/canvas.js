@@ -16,10 +16,7 @@ const adjustVolume = player => percent => {
     percent = percent < 0 ? 0 : percent;
     percent = percent > 1 ? 1 : percent;
 
-    player.setVolume(percent).then(() => {
-        console.log(percent);
-        console.log('Volume updated!');
-    });
+    player.setVolume(percent);
 };
 
 export const initCanvas = player => {
@@ -55,7 +52,7 @@ export const initCanvas = player => {
             if(type === VOLUME_CONTROLLER){
                 let clickX = evt.pageX - canvas.offsetLeft;
                 volumeController.isDragging = true;
-                if(clickX >= preXMap.get(type) - radius && clickX <= preXMap.get(type) + radius){
+                if(clickX >= volumeController.preX - radius && clickX <=volumeController.preX + radius){
                     drawProgressController(type)(clickX);
                 }
             }

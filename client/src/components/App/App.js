@@ -13,6 +13,8 @@ import {withRouter} from 'react-router-dom';
 import PlayerContainer from '../../containers/PlayerContainer';
 import './App.css';
 import '../UI/load.css';
+import {detect} from 'detect-browser';
+const browser = detect();
 
 class App extends React.Component{
     state = {
@@ -60,6 +62,7 @@ class App extends React.Component{
 
     componentDidMount(){
         const {dispatch} = this.props;
+
         async.series([
             cb => {
                 this.fetchApi(fetchUser)(cb);
@@ -68,7 +71,11 @@ class App extends React.Component{
                 this.fetchApi(fetchUserPlaylists)(cb);
             },
             cb => {
-                this.checkWindowSpotify(cb);
+                if(browser.name === 'safari'){
+                    cb('Safari does not support player, please use other browsers instead!');
+                }else{
+                    this.checkWindowSpotify(cb);
+                }
             },
         ], (err) => {
             if(err){

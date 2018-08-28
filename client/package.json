@@ -5,13 +5,14 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "webpack-dev-server --env.API_URL=http://localhost:8888 --mode development --open --hot",
-    "build": "webpack --env.API_URL=https://kevinzou.herokuapp.com --mode production"
+    "build": "webpack --env.API_URL=https://kevinzou.herokuapp.com --env.PRODUCTION=true --mode production"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
     "axios": "^0.18.0",
+    "detect-browser": "^3.0.0",
     "immutable": "^3.8.2",
     "normalizr": "^3.2.4",
     "prop-types": "^15.6.2",

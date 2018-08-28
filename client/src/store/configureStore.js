@@ -8,7 +8,11 @@ import {Map} from 'immutable';
 const initialState = Map();
 
 const configureStore = () => {
-    return createStore(reducer, initialState, applyMiddleware(thunk, promise, logger));
+    if(process.env.PRODUCTION){
+        return createStore(reducer, initialState, applyMiddleware(thunk, promise));
+    }else{
+        return createStore(reducer, initialState, applyMiddleware(thunk, promise, logger));
+    }
 }
 
 export default configureStore;

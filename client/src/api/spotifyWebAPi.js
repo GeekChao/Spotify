@@ -15,8 +15,6 @@ function _setToken(){
 } 
 
 export function refreshToken(){
-    console.log('refresh_token');
-
     const refresh_token = Client.getRefreshToken();
     return axios.get(`${REFRESH_TOKEN_URL}`, {
         params:{refresh_token}

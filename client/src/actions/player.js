@@ -28,7 +28,6 @@ export const setUpPlayer = () => dispatch => new Promise((resolve, reject) => {
 
     // Playback status updates
     player.addListener('player_state_changed', state => { 
-        console.log(state);
         const {position, duration, paused} = state;
         const {current_track:{name:trackName, album:{images:albumImg}, artists}} = state.track_window;
         const artistsName = truncateName(artists.map(({name}) => name).join(', '), 30);
