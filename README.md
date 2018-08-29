@@ -12,5 +12,5 @@ This app plays around with Spotify web api and playback sdk. <br/>
 * Add tracks to your library and remove them.
 
 ## Preview :microphone:
-Here is one screenshot of this app.
-
+Here is one screenshot of this app.<br/>
+![alt text](https://github.com/GeekChao/Spotify/blob/master/public/playing.png "Screenshot")
